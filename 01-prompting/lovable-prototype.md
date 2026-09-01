@@ -39,10 +39,10 @@ _____
 
 # Screenshots
 
+
 ## Default view
 Page layout shows the steps 1-3 - with a default resizeable layout and empty state information
 ![[Juno-PM_v1_Screenshot-01-Default.png]]
-[[Juno-PM_v1_Screenshot-01-Default.png]] 
 ## Transcript processing 
 AI processing triggered with user interview input
 ![[Juno-PM_v1_Screenshot-02-User-input.png]]
