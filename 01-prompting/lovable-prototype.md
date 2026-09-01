@@ -31,3 +31,24 @@ _____
 - **What worked:** UI and UX implementation was quick and easy 
 - **What broke / felt like a toy:** Lovable included some placeholder content into the INPUT field, which was great initially, but somehow this continues to be included into the SYNTHESIS even when the field is cleared. It wasn't obvious where the placeholder content came from, and how to ensure that it's fully replaced.
 - **What I'd change next pass:** Expand on how to make the SYNTHESIS more precise, with a general overview first, and then the actual cards. I make a distinction between an actual user Problem/Pain-point and Opportunity. Additionally, I would create more context of what "Juno PM" is, and include this into how the PRD is shaped.
+
+
+_____
+
+# Screenshots
+
+## Default view
+Page layout shows the steps 1-3 - with a default resizeable layout and empty state information
+![[Juno-PM_v1_Screenshot-01-Default.png]]
+
+## Transcript processing 
+AI processing triggered with user interview input
+![[Juno-PM_v1_Screenshot-02-User-input.png]]
+
+## PRD completed 
+Output structure defined through system prompt (incl. mandatory updates for CSM)
+![[Juno-PM_v1_Screenshot-03-User-input-and-output.png]]
+
+## System prompt 
+Dynamically applied so adjustments can be made in real time
+![[Juno-PM_v1_Screenshot-04-System-prompt.png]]
