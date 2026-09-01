@@ -8,12 +8,15 @@ Lovable preview
 https://id-preview--6fa4ff35-a16f-4762-a2f9-1147ab5f2050.lovable.app 
 
 ### Changelog
-2026-09-01 
+2026-09-01 - 01
 1. Initial three-column dashboard — fixed equal-width layout (1280px+) with Raw User Transcripts, Structured Insights, and Draft PRD panes; UI design updated (dark parchment-and-ink aesthetic with brass/rust accents).
 2. UX polish — status pill, persistently visible Process Transcript button, sample transcript that clears fully on first user edit, reset-sample control, copy-PRD button, loading skeletons, and clear in-panel error/retry states.
 3. Editable system prompt — added a collapsible System instructions panel in the top strip, pre-filled with your Rocketship PM role, guardrails, and output-format rules; edits trigger a “Re-process” state and mark the outputs as custom-instructed.
 4. Real AI synthesis — replaced the fake 1.5s delay with a server-side Lovable AI Gateway call to Gemini, returning ranked insights and a markdown PRD from the actual transcript.
 
+2026-09-01 - 02
+1. Updated system prompt: New default based on testing
+2. Updated column layouts: Widths to enable focus on outputs and flexible to adjust if needed
 
 _____
 
