@@ -47,4 +47,4 @@ Scope - P0 and P1 issues that will be actioned
 Out of scope - P3 issues or things that work well
 Future improvement opportunities - Ideas to improve issues noted as P0, P1 or P2; include one user quote only if available
 Open questions - Anything that needs to be clarified
-Actions and Decisions - What needs to be done by whom (engineering / design / PM? any support needed (customer success / support / leadership / vendors? Any decisions that need to be escalated that require leadership review/approval? 
+Actions and Decisions - What needs to be done by whom (engineering / design / PM? customer success / support (if customer reported, follow up must be done); any support needed (leadership / vendors)? Any decisions that need to be escalated that require leadership review/approval?
