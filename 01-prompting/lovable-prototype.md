@@ -7,6 +7,13 @@
 Lovable preview
 https://id-preview--6fa4ff35-a16f-4762-a2f9-1147ab5f2050.lovable.app 
 
+
+### Changelog
+2026-09-04 - 01
+1. **Strategy applied:** Added a dedicated first column allowing users to paste text or upload `.txt`/`.md` files, complete with a word count, formatted Markdown preview/edit toggle, and integrated into the AI synthesis process.
+2. **Dual-Mode AI Synthesis:** Replaced mock outputs with real backend calls through the Lovable AI Gateway, switching dynamically between **Strategy Mode** (aligned with uploaded strategy docs) and **Quality Mode** (scoring based on request-quality signals and anti-pattern detection).
+3. **Interface & Layout Improvements:** Transcripts now start empty with a clear status pill, structured insights display new strategic metadata and warnings, and the draft PRD now features clean superscript footnote references and definitions.
+4. **Flexible Layout & Controls:** Columns are now draggable and resizable (with a 12% minimum width), and the top control strip has been streamlined for better navigation.
 ### Changelog
 2026-09-01 - 01
 1. Initial three-column dashboard — fixed equal-width layout (1280px+) with Raw User Transcripts, Structured Insights, and Draft PRD panes; UI design updated (dark parchment-and-ink aesthetic with brass/rust accents).
