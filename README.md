@@ -16,7 +16,7 @@ Each module's artefact lives in its own folder; this README is the dashboard and
 ### M1 · Prompting
 - **System prompt** — [`01-prompting/system-prompt.md`](01-prompting/system-prompt.md)
 - **Lovable prototype** — https://lovable.dev/preview/7sTQEAhxH06y7YWIkVowYVnIbeoEfnjW
-- Screenshots -  [`see`](01-prompting/prototype-screenshots)
+- Screenshots -  [`see`](01-prompting/prototype-screenshots) 
 
 ### M2 · Strategy
 - **Decision matrix** — [`02-strategy/decision-matrix.md`](02-strategy/decision-matrix.md)
