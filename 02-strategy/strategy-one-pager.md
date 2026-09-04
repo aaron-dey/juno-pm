@@ -1,27 +1,40 @@
-# AI Strategy One-Pager · Juno
 
-> Module 2 · Strategy. Built with the **M2 · AI Strategy One-Pager Builder** (informed by the Three-Layer Model Mapper). Paste the tool's markdown over this file.
+# AI Strategy One-Pager - Juno Automated Prioritisation
 
-## The bet
+## 1. Problem & Workflow
 
-_The one-sentence strategic bet._
+The Problem: roadmap discussions at RocketShip are driven by the loudest voice in Slack rather than customer evidence. Priorities reverse weekly; stakeholder trust is eroding. 
 
-_____
+Prevention: Juno explicitly prevents 'opinion-driven prioritisation' - the bad decision of moving a feature up the backlog because someone in #leadership posted strongly, instead of because the cited evidence outweighs the alternatives. Customer pain points are not sufficiently acknowledged - and improvement opportunities are missed.
 
-## Three-layer model
+## 2. Target Metrics
 
-- **Model layer:** _which model(s), and why._
-- **Data / retrieval layer:** _what proprietary data or context creates advantage._
-- **Product layer:** _the experience users actually pay for._
+Cycle time: reduce average weekly roadmap prioritization from 2 hours to 30 minutes (75% reduction).
 
-## Why now
+Transparency: 90% of customer requests, must be analysed/synthesised within 24 hours of a report. The classification of customer requests must be documented clearly for CSM/ACM following the weekly prioritisation meeting. Communication from PM and CSM/ACM must be done following each prioritisation meeting. 
 
-_Market timing + why this is defensible._
+Leadership proof: under-10% rate of decisions reversed within 1 week, AND 90%+ of prioritised items have at least 2 cited sources from the corpus. Both metrics measurable in the first 30 days post-launch.
 
-_____
+## 3. Autonomy Level
 
-## Success metric
+Choice: Copilot. Juno drafts a ranked backlog with written reasoning + source citations; the PM reviews and clicks 'approve' before publish.
 
-_The single number that says the bet paid off._
+Explicitly avoiding: Agent. Letting Juno move sprint priorities or shift live dates without a human approval step is a one-way trust-erosion door - a single wrong call lets stakeholders dismiss the system permanently.
 
-_____
+## 4. Data & Model Approach
+
+Approach: Ground (RAG). We will ground the model in the RocketShip corpus - Slack #escalations, support tickets, interview notes, Notion product pages, Jira tickets - so every priority cites a source ID.
+
+Explicitly avoiding: a generic LLM (Buy). Without RAG grounding, Juno would hallucinate plausible-sounding priorities and invent customer signals that don't exist - the failure mode that kills trust fastest.
+
+## 5. Risks & Mitigations
+
+Risk: training data lag. Juno could over-weight whichever signal type was loudest in the past 60 days (e.g. enterprise escalations) and systematically under-weight quieter but more strategic signals (e.g. SMB churn). One quarter of skewed priorities and the roadmap drifts.
+
+Mitigation: a hard 'evidence balance' eval gate - reject any priority list where less than 20% of cited sources come from any one source type. Run weekly; PM reviews.
+
+## 6. V1 Scope
+
+In: ranking the existing backlog with cited evidence; surfacing under-cited items; flagging conflicts between Slack escalations and Jira priorities.
+
+Out: (1) hiring or headcount decisions, (2) customer-facing comms about why a feature was deprioritised. Internal updates to CSM/ACM must be done for issues raised by customers. Both stay 100% with the human PM.
