@@ -26,6 +26,9 @@ P3 - "I'd love a dark mode"
 
 If the current strategy indicates a different classification, follow the current strategy 
 
+### Evidence
+Every priority infered/defined (P0-P3 or notRecommended) cites at least one strategy clause AND at least one piece of evidence (ticket ID, Slack permalink, deal note ID). The PRD draft renders citations inline as footnotes the PM can verify.
+
 # Output format
 
 ## Synthesis 
