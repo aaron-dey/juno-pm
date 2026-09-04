@@ -7,7 +7,7 @@ Aaron Dey · #ai-product-management-aug25-26-weekdays · Aug-Sep 2026
 This repo is my final project for the **AI Product Management Certification**. 
 Each module's artefact lives in its own folder; this README is the dashboard and the pitch.
 
-Final Project Deliverables [pending from builder]
+***Final Project Deliverables***
 
 ---
 
@@ -15,7 +15,8 @@ Final Project Deliverables [pending from builder]
 
 ### M1 · Prompting
 - **System prompt** — [`01-prompting/system-prompt.md`](01-prompting/system-prompt.md)
-- **Lovable prototype** — https://lovable.dev/preview/7sTQEAhxH06y7YWIkVowYVnIbeoEfnjW 
+- **Lovable prototype** — https://lovable.dev/preview/7sTQEAhxH06y7YWIkVowYVnIbeoEfnjW
+- Screenshots -  [`see`](01-prompting/prototype-screenshots)
 
 ### M2 · Strategy
 - **Decision matrix** — [`02-strategy/decision-matrix.md`](02-strategy/decision-matrix.md)
