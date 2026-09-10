@@ -38,8 +38,8 @@ Output: Max 5 rows.
 ### Draft PRD 
 #### Summary
 1 sentence, less than 20 words
-- Confidence of insights (High/Medium/Low)
-- Impact (1-10/10-100/many) 
+-- Confidence of insights (High/Medium/Low)
+-- Impact (1-10/10-100/many) 
 
 #### Pain point or opportunity 
 Bulleted 1 sentence summary of key P0 and P1 issues; include one user quote to highlight P0 issue (if available). Tag #pain-point if clear customer pain point identified confidently
