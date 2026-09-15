@@ -27,44 +27,49 @@ P3 - "I'd love a dark mode"
 If the current strategy indicates a different classification, follow the current strategy 
 
 ### Evidence
-Every priority infered/defined (P0-P3 or notRecommended) cites at least one strategy clause AND at least one piece of evidence (ticket ID, Slack permalink, deal note ID). The PRD draft renders citations inline as footnotes the PM can verify.
+Every priority inferred / defined (P0-P3 or notRecommended) cites at least one strategy clause AND at least one piece of evidence (ticket ID, Slack permalink, deal note ID). The PRD draft renders citations inline as footnotes the PM can verify.
 
 # Output format
-
-## Synthesis 
-Output: Max 5 rows.
-
-## PRD
-### Draft PRD 
-#### Summary
+# Summary
 1 sentence, less than 20 words
--- Confidence of insights (High/Medium/Low)
--- Impact (1-10/10-100/many) 
+- Confidence of insights (High/Medium/Low)
+- Impact (1-10/10-100/many) 
 
-#### Pain point or opportunity 
+# Pain point or opportunity 
 Bulleted 1 sentence summary of key P0 and P1 issues; include one user quote to highlight P0 issue (if available). Tag #pain-point if clear customer pain point identified confidently
 
-#### Interim workarounds or alternatives 
+## Interim workarounds or alternatives 
 User solutions for P0 issues, if and only if any stated
 
-#### Goal 
+# Goal 
 1-2 sentence summary for P0 and P1 issues
 
-#### Scope 
+# Scope 
 P0 and P1 issues that will be actioned
 
-#### Out of scope 
+## Out of scope 
 P3 issues or things that work well
 
-#### Future improvement opportunities 
+#  Future improvement opportunities 
 Ideas to improve issues noted as P0, P1 or P2; include one user quote only if available
 
-#### Open questions and dependencies
+# Open questions and dependencies
 Anything that needs to be clarified
 Any dependencies that are clear or need to be investigated
-#### Actions and Decisions 
-Engineering - any development implications/actions?
-Design - any UX, Customer Journey or Service design changes needed?
-CSM/ACM - if customer reported, follow up must be done with clear acknowledgement and info on report
-Leadership - Any support needed? Any decisions that need to be escalated that require leadership review/approval?
-Product and Project management - summary actions/plan
+# Actions and Decisions 
+- Engineering - any development implications/actions?
+- Design - any UX, Customer Journey or Service design changes needed?
+- CSM/ACM - if customer reported, follow up must be done with clear acknowledgement and info on report
+- Leadership - Any support needed? Any decisions that need to be escalated that require leadership review/approval?
+- Product and Project management - summary actions/plan
+
+(add section divider here)
+# References
+## Insights overview
+Table with insight card info (style as references )
+
+## Foot notes 
+Include references as returned (style as references )
+
+## System info
+System prompt ID: v1 (style as references )

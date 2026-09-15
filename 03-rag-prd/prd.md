@@ -2,7 +2,8 @@
 
 ## Problem & user
 
-RocketShip PMs need evidence-based prioritization. Juno turns noisy Slack, tickets, and strategy docs into a ranked, cited backlog they can defend.
+RocketShip PMs need evidence-based prioritization. 
+Juno turns noisy Slack, tickets, and strategy docs into a ranked, cited backlog they can defend.
 
 ## Solution overview
 
@@ -21,18 +22,19 @@ last 90 days of Slack #voice-of-customer +
 Zendesk tickets tagged P0/P1 + 
 Salesforce closed-lost notes.
 
-Quantity: 
+**Quantity**: 
 ~600 documents total. 
 Strategy doc is the one true authority - all other sources are evidence in support.
 
 
-- **Chunking / indexing:** Hybrid (Semantic + Keyword)
-- **Grounding rule:** Every priority Juno produces (P0-P3 or notRecommended) cites at least one strategy clause AND at least one piece of evidence (ticket ID, Slack permalink, deal note ID). The PRD draft renders citations inline as footnotes the PM can click to verify.
+**Chunking / indexing:** Hybrid (Semantic + Keyword)
+
+**Grounding rule:** Every priority Juno produces (P0-P3 or notRecommended) cites at least one strategy clause AND at least one piece of evidence (ticket ID, Slack permalink, deal note ID). The PRD draft renders citations inline as footnotes the PM can click to verify.
   
-- **Freshness:** 
-	- Strategy One-Pager: sync on commit (it lives in the team Notion / git). 
-	- Slack + Zendesk: refresh hourly to keep recent customer signal current. 
-	- Salesforce: daily sync at 02:00 UTC - lost-deal notes are a leading indicator, not a real-time channel.
+**Freshness:** 
+- Strategy One-Pager: sync on commit (it lives in the team Notion / git). 
+- Slack + Zendesk: refresh hourly to keep recent customer signal current. 
+- Salesforce: daily sync at 02:00 UTC - lost-deal notes are a leading indicator, not a real-time channel.
 
 ## Requirements
 
@@ -44,4 +46,5 @@ Strategy doc is the one true authority - all other sources are evidence in suppo
 
 ## Out of scope
 
-Decisions that cannot be cited to a source in the knowledge base. Anything Juno is not allowed to retrieve or act on without a human.
+Decisions that cannot be cited to a source in the knowledge base. 
+Anything Juno is not allowed to retrieve or act on without a human.
