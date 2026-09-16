@@ -38,8 +38,8 @@
         "type": "OpenAI",
         "position": { "x": 640, "y": 110 },
         "data": {
-          "label": "GPT-4-class model",
-          "model": "gpt-4o",
+          "label": "GPT-5-class model",
+          "model": "gpt-5.6",
           "temperature": 0.2,
           "max_tokens": 800,
           "_note": "Add your OPENAI_API_KEY as a Langflow environment variable."
