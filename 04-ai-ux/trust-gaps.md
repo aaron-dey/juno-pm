@@ -23,4 +23,4 @@ Focus on the highest impact change, ensuring the synthesis is of a high quality,
 
 
 
-**Note: See improvements [[lovable-prototype]] changelog 2026-09-10**
+**Note: See improvements: [[lovable-prototype-changelog]]
