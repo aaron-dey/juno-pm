@@ -30,7 +30,7 @@ DECISION RULES
 - If a request fixes a workflow blocker (CSV crash, permission error) -> P0/P1
 
 
-# PRD - WITHOUT strategy
+# PRD output - WITHOUT strategy context applied
 ### Export to CSV crashes on Quarterly Reports
 
 P0
@@ -52,7 +52,7 @@ The first thing I notice is that the new blue navigation bar is really bright, l
 FRUSTRATED INTERVIEW · SARAH, DATA ANALYST 1×
 
 
-# PRD - WITH strategy
+# PRD - WITH strategy context applied
 
 ### CSV Export Crash on Quarterly Reports
 

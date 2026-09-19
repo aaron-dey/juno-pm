@@ -9,32 +9,33 @@ Prevention: Juno explicitly prevents 'opinion-driven prioritisation' - the bad d
 
 ## 2. Target Metrics
 
-Cycle time: reduce average weekly roadmap prioritization from 2 hours to 30 minutes (75% reduction).
+Cycle time: reduce average weekly roadmap prioritisation from 2 hours to 30 minutes (75% reduction).
 
 Transparency: 90% of customer requests, must be analysed/synthesised within 24 hours of a report. The classification of customer requests must be documented clearly for CSM/ACM following the weekly prioritisation meeting. Communication from PM and CSM/ACM must be done following each prioritisation meeting. 
 
-Leadership proof: under-10% rate of decisions reversed within 1 week, AND 90%+ of prioritised items have at least 2 cited sources from the corpus. Both metrics measurable in the first 30 days post-launch.
+Leadership proof: under-10% rate of decisions reversed within 1 week, AND 90%+ of prioritised items have at least 2 cited sources. Both metrics measurable in the first 30 days post-launch.
 
 ## 3. Autonomy Level
 
-Choice: Copilot. Juno drafts a ranked backlog with written reasoning + source citations; the PM reviews and clicks 'approve' before publish.
+Choice: Copilot. Juno drafts a ranked backlog with written reasoning + source citations; the PM reviews and approves before publish.
 
 Explicitly avoiding: Agent. Letting Juno move sprint priorities or shift live dates without a human approval step is a one-way trust-erosion door - a single wrong call lets stakeholders dismiss the system permanently.
 
 ## 4. Data & Model Approach
 
-Approach: Ground (RAG). We will ground the model in the RocketShip corpus - Slack #escalations, support tickets, interview notes, Notion product pages, Jira tickets - so every priority cites a source ID.
+Approach: Ground (RAG). We will ground the model in the RocketShip corpus - Slack #escalations, support tickets, interview notes, wiki product pages, Jira tickets - so every priority cites a source ID.
 
 Explicitly avoiding: a generic LLM (Buy). Without RAG grounding, Juno would hallucinate plausible-sounding priorities and invent customer signals that don't exist - the failure mode that kills trust fastest.
 
 ## 5. Risks & Mitigations
 
-Risk: training data lag. Juno could over-weight whichever signal type was loudest in the past 60 days (e.g. enterprise escalations) and systematically under-weight quieter but more strategic signals (e.g. SMB churn). One quarter of skewed priorities and the roadmap drifts.
+Risk: training data lag. Juno could over-weight whichever signal type was loudest in the past 60 days (e.g. tier-1 customer escalations) and systematically under-weight quieter but more strategic signals (e.g. tier-2 customer churn). One quarter of skewed priorities and the roadmap drifts.
 
 Mitigation: a hard 'evidence balance' eval gate - reject any priority list where less than 20% of cited sources come from any one source type. Run weekly; PM reviews.
 
 ## 6. V1 Scope
 
-In: ranking the existing backlog with cited evidence; surfacing under-cited items; flagging conflicts between Slack escalations and Jira priorities.
+In: ranking the existing backlog with cited evidence; surfacing under-cited items; flagging conflicts between Slack #escalations and Jira backlog priorities.
 
-Out: (1) hiring or headcount decisions, (2) customer-facing comms about why a feature was deprioritised. Internal updates to CSM/ACM must be done for issues raised by customers. Both stay 100% with the human PM.
+Out: (1) hiring or headcount decisions, (2) customer-facing comms about why a feature was deprioritised. Internal updates must be made for CSM/ACM (customer success/account management) for issues raised by customers. 
+Both stay 100% with the human PM.

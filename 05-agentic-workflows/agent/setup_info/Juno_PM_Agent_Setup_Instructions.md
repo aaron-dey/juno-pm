@@ -23,15 +23,15 @@ Navigate to `http://localhost:7860`
 
 Create nodes in this order:
 
-| Node | Type | Config |
-|------|------|--------|
-| Input | ChatInput | Label: "P0 Thread" |
-| System Prompt | Prompt Template | Template: "You are Juno PM, an AI Associate PM. For the attached P0 thread: 1. Identify top 3 risks. 2. Cite message index. 3. Score 1-5 severity. 4. Never invent customer names/ARR. 5. Output markdown table: Rank \| Risk \| Confidence \| Source idx \| Suggested action.\n\nThread:\n{input_value}" |
-| KB | Document Loader | Path: `/app/kb`, Type: Markdown |
-| Retriever | Retriever | Connect to Document Loader, top-k: 10 |
-| LLM | OpenAI | Model: gpt-4o, Temp: 0.2, Max tokens: 800 |
-| Agent | Agent | Language Model: OpenAI, Instructions: "You are Juno PM..." |
-| Output | Chat Output | - |
+| Node          | Type            | Config                                                                                                                                                                                                                                                                                                   |
+| ------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Input         | ChatInput       | Label: "P0 Thread"                                                                                                                                                                                                                                                                                       |
+| System Prompt | Prompt Template | Template: "You are Juno PM, an AI Associate PM. For the attached P0 thread: 1. Identify top 3 risks. 2. Cite message index. 3. Score 1-5 severity. 4. Never invent customer names/ARR. 5. Output markdown table: Rank \| Risk \| Confidence \| Source id \| Suggested action.\n\nThread:\n{input_value}" |
+| KB            | Document Loader | Path: `/app/kb`, Type: Markdown                                                                                                                                                                                                                                                                          |
+| Retriever     | Retriever       | Connect to Document Loader, top-k: 10                                                                                                                                                                                                                                                                    |
+| LLM           | OpenAI          | Model: gpt-4o, Temp: 0.2, Max tokens: 800                                                                                                                                                                                                                                                                |
+| Agent         | Agent           | Language Model: OpenAI, Instructions: "You are Juno PM..."                                                                                                                                                                                                                                               |
+| Output        | Chat Output     | -                                                                                                                                                                                                                                                                                                        |
 
 ## 3. Wire Connections
 
