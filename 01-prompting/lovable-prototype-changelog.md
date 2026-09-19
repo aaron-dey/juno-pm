@@ -22,6 +22,15 @@ Each release below is grouped into four consistent categories:
 
 ---
 
+## 2026-09-19 — Product analytics
+
+**System**
+
+- Added product analytics (Amplitude)
+	- **Process Transcript** — track "Process transcript", with the transcript ID, if strategy was loaded, whether the prompt was edited, and transcript length
+	- **Insight Priority Changed** — track priority changes, with the card ID and the from/to priorities
+	- **Insight Reprocessed** — track individual insight card re-processing 
+
 ## 2026-09-15 — System instructions & output rendering
 
 **System**
