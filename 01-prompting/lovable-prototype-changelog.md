@@ -33,6 +33,7 @@ Each release below is grouped into four consistent categories:
 - System instructions overlay simplified: Context field removed; single full-height editor with the same view/edit (pencil/eye) Markdown experience
 - Markdown tables in the PRD column render as styled, human-readable tables
 
+---
 
 ## 2026-09-11 — Polish & mobile
 
@@ -45,6 +46,7 @@ Each release below is grouped into four consistent categories:
 	- Status pill format: "1 insight (1 src)" / "N insights (M src)"
 - Mobile layout: columns stack vertically with page scroll; top bar (logo, status, Process) sticky; desktop layout untouched
 
+---
 
 ## 2026-09-10 — "v3 release": Editable insight cards, AI regeneration and enhancement
 
@@ -80,6 +82,7 @@ Each release below is grouped into four consistent categories:
 
 Note: related audi [[trust-gaps]] 
 
+---
 
 ## 2026-09-04 — "v2 release": Strategy context application and AI synthesis
 
@@ -95,6 +98,7 @@ Note: related audi [[trust-gaps]]
 - Dual-Mode AI Synthesis updated:  dynamic switching between Strategy Mode (aligned with uploaded strategy docs) and Quality Mode (scoring based on request-quality signals and anti-pattern detection)
 - Draft PRD gains superscript footnote references and a clean definitions/reference block
 
+---
 
 ## 2026-09-01 — 02
 
@@ -106,6 +110,7 @@ Note: related audi [[trust-gaps]]
 
 - Updated column widths to favour output focus, still flexible to adjust
 
+---
 
 ## 2026-09-01 — 01
 
