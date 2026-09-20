@@ -5,7 +5,7 @@ Two prototype Langflow flows for the Juno PM agentic-workflow concept: **v1** (b
 ## Prerequisites
 - Docker installed
 - OpenAI API key ready
-- Project folder mounted into the container: `/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent`
+- Project folder mounted into the container: `~/juno-pm/project/05-agentic-workflows/agent`
   - KB source files: `agent/kb/`
   - Flow exports: `agent/Juno_PM_Agent-v1-PO-Thread-HIL.json`, `agent/Juno_PM_Agent-v2-PO-Thread-HIL-with-Embedding.json`
 
@@ -15,7 +15,7 @@ Two prototype Langflow flows for the Juno PM agentic-workflow concept: **v1** (b
 docker run \
   -e OPENAI_API_KEY="sk-proj-YOUR-KEY-HERE" \
   -e LANGFLOW_AUTO_LOGIN=true \
-  -v /Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent:/app/kb \
+  -v ~/juno-pm/project/05-agentic-workflows/agent:/app/kb \
   -p 7860:7860 \
   --name langflow \
   langflowai/langflow

@@ -31,7 +31,7 @@ fi
 echo -e "${GREEN}✓ API key configured${NC}\n"
 
 # Check KB folder
-KB_PATH="/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent"
+KB_PATH="$HOME/juno-pm/project/05-agentic-workflows/agent"
 if [ ! -d "$KB_PATH" ]; then
     echo -e "${RED}❌ KB folder not found${NC}"
     exit 1

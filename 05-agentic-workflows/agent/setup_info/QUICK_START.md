@@ -2,8 +2,8 @@
 
 ## What You've Got
 
-✅ KB folder created: `/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent/kb`  
-✅ Startup script: `/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent/langflow-start.sh`  
+✅ KB folder created: `~/juno-pm/project/05-agentic-workflows/agent/kb`  
+✅ Startup script: `~/juno-pm/project/05-agentic-workflows/agent/langflow-start.sh`  
 ✅ Langflow template: `Juno Agent - starter template.json` (import into Langflow UI)  
 ✅ Full setup guide: `LANGFLOW_SETUP.md`  
 ✅ Prompt tuning guide: `PROMPTS_GUIDE.md`  
@@ -21,7 +21,7 @@ export OPENAI_API_KEY="sk-proj-YOUR-KEY-HERE"
 ## Step 2: Start Langflow
 
 ```bash
-cd /Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent
+cd ~/juno-pm/project/05-agentic-workflows/agent
 ./langflow-start.sh
 ```
 
@@ -30,7 +30,7 @@ Or manually:
 docker run \
   -e OPENAI_API_KEY="sk-proj-YOUR-KEY-HERE" \
   -e LANGFLOW_AUTO_LOGIN=true \
-  -v /Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent:/app/kb \
+  -v ~/juno-pm/project/05-agentic-workflows/agent:/app/kb \
   -p 7860:7860 \
   --name langflow \
   langflowai/langflow
@@ -68,7 +68,7 @@ Currently in KB:
 - `strategy-one-pager.md` (product strategy context)
 
 **To add more KB:**
-1. Save `.md` files to `/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent/kb/`
+1. Save `.md` files to `~/juno-pm/project/05-agentic-workflows/agent/kb/`
 2. Restart Langflow (stop & restart Docker)
 3. Agent now has more context
 
@@ -108,7 +108,7 @@ Read `PROMPTS_GUIDE.md` for:
 ## Files Inventory
 
 ```
-/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent/
+~/juno-pm/project/05-agentic-workflows/agent/
 ├── langflow-start.sh                 (startup script)
 ├── kb/
 │   └── strategy-one-pager.md        (KB file)

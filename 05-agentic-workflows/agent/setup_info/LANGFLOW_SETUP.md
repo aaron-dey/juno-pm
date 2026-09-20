@@ -3,7 +3,7 @@
 ## Prerequisites
 - Docker installed
 - OpenAI API key ready
-- KB path: `/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent/kb`
+- KB path: `~/juno-pm/project/05-agentic-workflows/agent/kb`
 
 ---
 
@@ -15,7 +15,7 @@ Run this command in your terminal (replace `YOUR-KEY-HERE` with your actual Open
 docker run \
   -e OPENAI_API_KEY="sk-proj-YOUR-KEY-HERE" \
   -e LANGFLOW_AUTO_LOGIN=true \
-  -v /Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent:/app/kb \
+  -v ~/juno-pm/project/05-agentic-workflows/agent:/app/kb \
   -p 7860:7860 \
   --name langflow \
   langflowai/langflow
@@ -28,7 +28,7 @@ Navigate to `http://localhost:7860`
 ## 2. Import the Starter Template
 
 The starter template is available as a JSON export in your project folder:  
-`/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/Juno Agent - starter template.json`
+`~/juno-pm/project/05-agentic-workflows/Juno Agent - starter template.json`
 
 In Langflow UI:
 1. Click **File** → **Import from file**
@@ -110,7 +110,7 @@ Your KB folder currently contains:
 - `strategy-one-pager.md` — Juno's product strategy and goals
 
 **To add more KB files:**
-- Place any `.md` files in `/Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent/kb/`
+- Place any `.md` files in `~/juno-pm/project/05-agentic-workflows/agent/kb/`
 - Restart Langflow (Docker container) to pick up new files
 - Retriever will automatically index and surface relevant chunks
 
@@ -176,6 +176,6 @@ Your KB folder currently contains:
 | Docker image | langflowai/langflow |
 | LLM model | gpt-4o |
 | Temperature | 0.2 |
-| KB location (host) | /Users/aarondey/aos/juno-pm/project/05-agentic-workflows/agent/kb |
+| KB location (host) | ~/juno-pm/project/05-agentic-workflows/agent/kb |
 | KB location (container) | /app/kb |
 | Starter template | Juno Agent - starter template.json |
