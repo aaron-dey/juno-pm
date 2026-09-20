@@ -16,7 +16,7 @@ Each module's artefact lives in its own folder; this README is the dashboard and
 ### M1 · Prompting
 - **System prompt** — [`01-prompting/system-prompt.md`](01-prompting/system-prompt.md)
 - **Lovable prototype** app —  https://disboard.lovable.app 
-	- Changelog: [[lovable-prototype-changelog]]
+	- [Changelog: `01-prompting/lovable-prototype-changelog.md`](https://github.com/aaron-dey/juno-pm/blob/main/01-prompting/lovable-prototype-changelog.md)  
 
 ### M2 · Strategy
 - **Decision matrix** — [`02-strategy/decision-matrix.md`](02-strategy/decision-matrix.md)
@@ -32,37 +32,77 @@ Each module's artefact lives in its own folder; this README is the dashboard and
 ### M5 · Agentic Workflows
 - **Agent Workflow Spec (AWSpec)** — [`05-agentic-workflows/awspec.md`](05-agentic-workflows/awspec.md)
 - **Agent Control Panel** — [`05-agentic-workflows/agent-control-panel.md`](05-agentic-workflows/agent-control-panel.md)
-
+- **Agents —**  [`05-agentic-workflows/agent`](https://github.com/aaron-dey/juno-pm/tree/main/05-agentic-workflows/agent)
 ### M6 · Evals & Guardrails
 - **Eval stack** — [`06-evals/eval-stack.md`](06-evals/eval-stack.md)
 - **Human evaluation rubric** — [`06-evals/human-rubric.md`](06-evals/human-rubric.md)
+- **Evals** —  [APP: `06-evals/evals-app`](https://github.com/aaron-dey/juno-pm/tree/main/06-evals/evals-app) | [AGENT: `06-evals/evals-agent`](https://github.com/aaron-dey/juno-pm/tree/main/06-evals/evals-agent)
 
 ---
 
 ## PM Execution Plan
 
 ### Where Juno is today
-_____
+- Strategy, PRD, Prototype, Agent, Prompts,  Evals created (draft, synthetic)
+- App prototype published with product analytics enabled
+- Agent preview chat created (hooks to Slack pending)
+- Evals for prototype and agent drafted, golden sets created with focus on UXD functionality for app prototype and synthesis quality
+- Human rubric drafted and calibration pending
 
 ### What ships next (next 2 sprints)
-_____
+- Sprint 1: 
+-- Review/refine the Eval golden set with (recruited) reviewers
+-- Add additional PII scrubbing (focus on transcript processing to include anonymised IDs)
+-- Add fallback exists if the Lovable AI Gateway/Gemini goes down (degraded-mode banner)
+-- Implement final blocking governance requirements 
+-- Wire up live production environments 
+
+- Sprint 2: 
+-- Open closed beta with 6 PMs (2 RocketShip, 4 customers) for Transcript processing functionality 
+-- Weekly rubric review
+-- instrument abandon-rate.
 
 ### What I watch (dashboards)
-_____
+- Daily: priority re-classification rate, regeneration rate, edit rate.
+- Weekly: rejection hit-rate; cost per run.
+- Per release: golden-set accuracy
 
-### Red lines (what blocks shipping — numbers, not feelings)
-_____
+### Red lines (what blocks shipping)
+-  Critical-safety fail: 0
+- Cost: >$0.50 per run.
+- P99 latency: >10s on triage flow.
 
 ### Governance
-_Compliance · Safety · Reliability · Reputation._
+- Compliance: 
+-- PII minimised at input (GDPR DSR support process/tooling needed within 30-days)
+-- EU AI Act compliance risk review (documented)
+-- Review and document provider compliance (Lovable, Gemini, Langflow, OpenAI) and EU data-residency
+
+- Safety
+-- No autonomy upgrade for Agent without re-review.
+-- Human in the Loop action cannot be bypassed silently 
+
+- Reliability
+- P99 latency reviewed weekly (post-mortem and action plan within 5 business days if repeated breach for 2 consecutive weeks)
+-- Product analytics metrics (reclassification rate, regenerate rate, abandon rate) reviewed weekly (Amplitude)
+
+- Reputation
+-- Customer-facing communication about deprioritisation stays 100% human
+-- Missed-P0 incident postmortem and action plan (within 5 business days)
 
 ---
 
 ## Build Insights
 
-- **Friction point.** _____
-- **Key learning.** _____
-- **Aha moment.** _____
+- **Friction point.** Iterating/tuning parameters for the vector database ingest and retrieval, system and individual prompts (chunking, Top-K, history) was early friction triggering iterations that balanced accuracy, latency and cost
+- **Key learning.** Building user trust requires this to be designed into the (system) prompt and UXD right from the start, to be iterated/improved based on product analytics and qualitative reviews
+- **Aha moment.** Closing the control gap by enabling granular human steering and HIL chat prompts was a step change to improve quality of outputs and user trust that only approved actions moved forward
+
+---
+
+## Async showcase
+
+3-minute walkthrough: PENDING
 
 ---
 

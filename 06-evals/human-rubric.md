@@ -21,7 +21,7 @@ Note: Escalate here could be needed to a commercial owner / C-level or designate
 - **Score 1:** Critical - app does not load at all
 - **Score 2:** Sub-par - app takes 30s or more to load
 - **Score 3:** Acceptable - app loads within 20s
-- **Score 4:** Strong - app loads within 5-10s
+- **Score 4:** Strong - app loads within 10s
 - **Score 5:** Excellent - app loads in less than 5s and displays system health 
 
 ### 2. Prioritisation 

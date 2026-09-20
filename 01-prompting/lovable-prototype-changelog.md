@@ -89,7 +89,7 @@ Each release below is grouped into four consistent categories:
 - Per-card AI refinement (sparkles button): re-checks title/description/priority/confidence against the evidence quote
 - PRD editing/enhancement: highlight text → Expand / Shorten / Custom (AI rewrites only the selection; floating Enhance button added since preview swallows right-click)
 
-Note: related audi [[trust-gaps]] 
+Note: related audit [[trust-gaps]] 
 
 ---
 
