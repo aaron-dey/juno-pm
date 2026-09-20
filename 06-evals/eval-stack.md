@@ -4,8 +4,10 @@
 
 >=80% not reclassified; regenerate rate <=15%; abandon rate <=20% on non-trivial intents
 
-- Active: insights reclassification (P0-P3,Reject); insights "regenerate" and PRD "edit before send" buttons
-- Passive: insights rejection, time-to-first-action, abandon rate (insights not actions/PRD not copied)
+- Active: insights reclassification (P0-P3,Reject); Insights "regenerate" and PRD "edit before send" buttons
+- Passive: time-to-first-action, abandon rate (insights not actions, PRD not copied)
+
+Product analytics implemented ( with Amplitude) in app to track these actions [[Juno-PM_Product-Analytics_Screenshot_Example01.png|(see screenshot)]].
 
 ## The stack
 
@@ -18,8 +20,10 @@
 ## Golden set
 
 - 100 anonymised P0 threads with PM-curated expected top-3 risks
-- Versioned in 06-evals/golden-set/
 - Refresh quarterly and after every major incident
+- Synthetic golden set created for app (functionality) and agent (cases, synthesis):***
+- *[[juno-pm-app-golden-set]]* 
+- *[[juno-pm-agent-golden-set]]*
 
 ## Release gate
 

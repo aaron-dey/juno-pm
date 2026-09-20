@@ -1,0 +1,412 @@
+
+{
+  "dataset_name": "juno_pm_schema_coverage_golden_set",
+  "version": "1.0",
+  "generated": "2026-09-20",
+  "scope": "Schema-and-scenario coverage only. Expected outputs are synthetic and encode the STRUCTURE/FORMAT rules documented in the Juno PM changelog (card fields, confidence bands, priority values, citation format, PRD sections, mode-switching logic, staleness behavior). They are NOT validated against real Lovable AI Gateway / Gemini outputs and should not be used to judge synthesis QUALITY — only whether the app's rendering, state, and schema logic behave as documented.",
+  "schema": {
+    "id": "string, e.g. TC-001",
+    "category": "insight_synthesis | prd_generation | mode_switching | ui_state | citation_traceability | enhancement",
+    "input": {
+      "transcript": "string or null",
+      "transcript_id": "string (JNO-YYYYMMDD format) or null",
+      "strategy_doc": "string or null (absence triggers Quality Mode)",
+      "existing_card": "object or null (for enhancement/edit test cases)"
+    },
+    "expected_output": "object, shape varies by category — see cases",
+    "notes": "string — what this case is testing and why"
+  },
+  "cases": [
+    {
+      "id": "TC-001",
+      "category": "insight_synthesis",
+      "input": {
+        "transcript": "User: I keep losing my place when I switch between the transcript view and the insights panel. Every time I scroll down in one, the other resets to the top. It's disorienting during long review sessions.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Focus Q3: reduce friction in the core review workflow. Prioritize anything that breaks reviewer flow-state over net-new features."
+      },
+      "expected_output": {
+        "mode": "Strategy Mode",
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "Scroll position resets between panels during review",
+          "description": "Reviewer loses scroll context when switching focus between transcript and insights panels, breaking flow during long sessions.",
+          "priority": "P1",
+          "confidence": 82,
+          "confidence_band": "light_orange",
+          "sentiment": "negative",
+          "strategic_pillar": "Reduce review friction",
+          "evidence_quote": "Every time I scroll down in one, the other resets to the top.",
+          "source_citation": "JNO-20260920"
+        }
+      },
+      "notes": "Baseline single-insight extraction in Strategy Mode with a directly relevant strategy doc. Confidence in 60-89 band → light orange per 2026-09-10 color spec."
+    },
+    {
+      "id": "TC-002",
+      "category": "insight_synthesis",
+      "input": {
+        "transcript": "User: honestly the colors are fine I guess, maybe a little dark for me but whatever, not a big deal.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": null
+      },
+      "expected_output": {
+        "mode": "Quality Mode",
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "Minor preference for lighter color scheme",
+          "description": "User expressed low-conviction preference for a lighter palette; explicitly downplayed importance.",
+          "priority": "P3",
+          "confidence": 22,
+          "confidence_band": "red",
+          "sentiment": "neutral",
+          "strategic_pillar": null,
+          "evidence_quote": "maybe a little dark for me but whatever, not a big deal",
+          "source_citation": "JNO-20260920"
+        },
+        "quality_mode_signals": ["hedging language", "explicit low-stakes framing", "no strategy doc present"]
+      },
+      "notes": "Tests Quality Mode fallback (no strategy doc uploaded) and the 0-29% red confidence band on a weak/low-signal transcript."
+    },
+    {
+      "id": "TC-003",
+      "category": "insight_synthesis",
+      "input": {
+        "transcript": "User: This is completely unusable, I lost 40 minutes of work when it crashed without saving. This needs to be fixed immediately or I'm switching tools.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Q3 priority: data integrity and reliability above all else."
+      },
+      "expected_output": {
+        "mode": "Strategy Mode",
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "Unsaved work lost on crash",
+          "description": "Application crash caused loss of ~40 minutes of unsaved user work; directly threatens retention.",
+          "priority": "P0",
+          "confidence": 95,
+          "confidence_band": "green",
+          "sentiment": "negative",
+          "strategic_pillar": "Data integrity and reliability",
+          "evidence_quote": "I lost 40 minutes of work when it crashed without saving.",
+          "source_citation": "JNO-20260920"
+        },
+        "ui_state": {
+          "escalate_pill": "visible, red, icon-only (P0 cards only, per 2026-09-11 spec)"
+        }
+      },
+      "notes": "Tests P0 classification, 90-100 green confidence band, and the P0-specific red Escalate pill UI rule."
+    },
+    {
+      "id": "TC-004",
+      "category": "insight_synthesis",
+      "input": {
+        "transcript": "User: I noticed the logo uses a slightly different shade of brown in the footer versus the header. Not something I'd ever mention if you hadn't asked directly what I noticed.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Q3 priority: core workflow reliability."
+      },
+      "expected_output": {
+        "mode": "Strategy Mode",
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "Minor logo color inconsistency",
+          "description": "Cosmetic color mismatch between header and footer logo instances, noted only when directly prompted.",
+          "priority": "REJECT",
+          "confidence": 15,
+          "confidence_band": "red",
+          "sentiment": "neutral",
+          "strategic_pillar": null,
+          "evidence_quote": "a slightly different shade of brown in the footer versus the header",
+          "source_citation": "JNO-20260920"
+        },
+        "ui_state": {
+          "location": "moved to collapsed Rejected list, restorable"
+        }
+      },
+      "notes": "Tests REJECT priority path and the 2026-09-10 rejected-cards collapse/restore behavior — irrelevant-to-strategy cosmetic feedback."
+    },
+    {
+      "id": "TC-005",
+      "category": "insight_synthesis",
+      "input": {
+        "transcript": "User A: The export button is buried three menus deep.\nUser B: Yeah I gave up trying to find export and just took a screenshot instead.\nUser C: Export needs to be one click, I use it constantly.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Q3 priority: reduce friction in core workflow."
+      },
+      "expected_output": {
+        "mode": "Strategy Mode",
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "Export function is too deeply nested",
+          "description": "Multiple independent users report difficulty finding export functionality; one resorted to a workaround (screenshot).",
+          "priority": "P1",
+          "confidence": 88,
+          "confidence_band": "light_orange",
+          "sentiment": "negative",
+          "strategic_pillar": "Reduce review friction",
+          "evidence_quote": "I gave up trying to find export and just took a screenshot instead.",
+          "source_citation": "JNO-20260920",
+          "corroboration": {
+            "source_count": 3,
+            "note": "status pill should read '1 insight (3 src)' per 2026-09-11 format"
+          }
+        }
+      },
+      "notes": "Tests multi-source corroboration within a single transcript and the '(M src)' status pill format from 2026-09-11."
+    },
+    {
+      "id": "TC-006",
+      "category": "prd_generation",
+      "input": {
+        "transcript": null,
+        "strategy_doc": "Q3 priority: reduce friction in core workflow.",
+        "existing_card": {
+          "card_id": "INS-001",
+          "title": "Export function is too deeply nested",
+          "priority": "P1",
+          "confidence": 88,
+          "evidence_quote": "I gave up trying to find export and just took a screenshot instead.",
+          "source_citation": "JNO-20260920"
+        }
+      },
+      "expected_output": {
+        "prd_excerpt_markdown": "## Problem\nUsers cannot locate the export function without significant navigation effort, leading to workaround behavior (screenshotting) instead of using the intended feature.[^1]\n\n> \"I gave up trying to find export and just took a screenshot instead.\"\n\n## References\n| ID | Insight | Source | Priority |\n|---|---|---|---|\n| INS-001 | Export function is too deeply nested | JNO-20260920 | P1 |\n\n[^1]: JNO-20260920, INS-001",
+        "structural_requirements": [
+          "blockquote for evidence, brass-border card styling on render",
+          "numbered footnote reference inline",
+          "References section at document end with insights-overview table",
+          "superscript reference opens info overlay on hover/click"
+        ]
+      },
+      "notes": "Tests PRD output format per 2026-09-15 system prompt spec: blockquotes tied to evidence, footnotes, References table, citation overlay behavior."
+    },
+    {
+      "id": "TC-007",
+      "category": "ui_state",
+      "input": {
+        "transcript": "",
+        "transcript_id": null,
+        "strategy_doc": null
+      },
+      "expected_output": {
+        "ui_state": {
+          "status_pill": "Ready",
+          "no_insights_pill": "not applicable — no processing has occurred",
+          "process_button": "visible, enabled: false (no transcript to process)"
+        }
+      },
+      "notes": "Tests empty-state rendering: no transcript entered, initial 'Ready' pill (renamed from 'Awaiting input' on 2026-09-11)."
+    },
+    {
+      "id": "TC-008",
+      "category": "ui_state",
+      "input": {
+        "transcript": "User: The search filter doesn't reset between sessions.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": null,
+        "existing_card": null
+      },
+      "expected_output": {
+        "ui_state": {
+          "processing_sequence": [
+            "status_pill: Processing",
+            "step-by-step 'Juno is working' indicator shown above skeleton cards",
+            "'No insights' pill hidden during processing",
+            "on completion: status_pill updates to '1 insight (1 src)'"
+          ]
+        }
+      },
+      "notes": "Tests the processing-state sequence from 2026-09-10: progress indicator visibility and pill suppression during active processing."
+    },
+    {
+      "id": "TC-009",
+      "category": "ui_state",
+      "input": {
+        "transcript": "User: The onboarding tour skips step 3 on mobile.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Q3 priority: mobile parity.",
+        "existing_card": {
+          "card_id": "INS-001",
+          "title": "Onboarding tour skips step 3 on mobile",
+          "priority": "P2",
+          "confidence": 70,
+          "prd_included": true
+        }
+      },
+      "expected_output": {
+        "action": "user edits INS-001 title inline",
+        "ui_state": {
+          "card_edit": "inline title editable, saved on blur/confirm",
+          "prd_status": "marked stale — 'Rebuild PRD' button now required before PRD reflects the edit"
+        }
+      },
+      "notes": "Tests the 2026-09-10 rule: card edits mark the PRD stale until the manual 'Rebuild PRD' action is taken."
+    },
+    {
+      "id": "TC-010",
+      "category": "enhancement",
+      "input": {
+        "transcript": "User: The dashboard loads slowly, especially with more than 20 items. It's not broken, just sluggish.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Q3 priority: performance under load.",
+        "existing_card": {
+          "card_id": "INS-001",
+          "title": "Dashboard loads slowly with 20+ items",
+          "description": "Dashboard has performance degradation at scale.",
+          "priority": "P2",
+          "confidence": 55,
+          "evidence_quote": "It's not broken, just sluggish."
+        }
+      },
+      "expected_output": {
+        "action": "per-card AI refinement (sparkles button)",
+        "refined_card": {
+          "card_id": "INS-001",
+          "title": "Dashboard performance degrades beyond 20 items",
+          "description": "User reports noticeable slowdown (not failure) once item count exceeds ~20, indicating a scaling issue rather than a functional bug.",
+          "priority": "P2",
+          "confidence": 61,
+          "confidence_band": "light_orange",
+          "confidence_band_shift": "darker_orange -> light_orange"
+        }
+      },
+      "notes": "Tests per-card sparkles refinement (2026-09-10): re-check of title/description/priority/confidence against the evidence quote, including a confidence-band crossing."
+    },
+    {
+      "id": "TC-011",
+      "category": "enhancement",
+      "input": {
+        "transcript": null,
+        "existing_card": {
+          "card_id": "INS-001",
+          "prd_excerpt": "The export feature is hard to find and users often give up.",
+          "selection": "hard to find and users often give up"
+        }
+      },
+      "expected_output": {
+        "action": "right-click selection enhancement: Expand",
+        "result_excerpt": "The export feature is hard to find and users often give up, frequently resorting to manual workarounds like screenshots instead of completing the intended export action",
+        "ui_note": "floating Enhance button used instead of native right-click context menu (preview swallows right-click, per 2026-09-10)"
+      },
+      "notes": "Tests selection-level AI rewrite (Expand) and the floating-button UI workaround for the preview pane's right-click limitation."
+    },
+    {
+      "id": "TC-012",
+      "category": "enhancement",
+      "input": {
+        "transcript": null,
+        "existing_card": {
+          "card_id": "INS-001",
+          "prd_excerpt": "The export feature is hard to find and users often give up, frequently resorting to manual workarounds like screenshots instead of completing the intended export action.",
+          "selection": "frequently resorting to manual workarounds like screenshots instead of completing the intended export action"
+        }
+      },
+      "expected_output": {
+        "action": "right-click selection enhancement: Shorten",
+        "result_excerpt": "The export feature is hard to find, causing users to give up.",
+        "ui_note": "same floating Enhance affordance as Expand/Custom"
+      },
+      "notes": "Tests the Shorten variant of selection enhancement (2026-09-10) — inverse of TC-011."
+    },
+    {
+      "id": "TC-013",
+      "category": "citation_traceability",
+      "input": {
+        "transcript": "User: Notifications keep arriving 5-10 minutes late, which defeats the purpose for time-sensitive alerts.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Q3 priority: reliability of time-sensitive features."
+      },
+      "expected_output": {
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "Notification delivery delayed 5-10 minutes",
+          "priority": "P1",
+          "confidence": 84,
+          "evidence_quote": "Notifications keep arriving 5-10 minutes late, which defeats the purpose for time-sensitive alerts.",
+          "source_citation": "JNO-20260920"
+        },
+        "prd_footnote": {
+          "inline_marker": "superscript [1] after the referencing sentence",
+          "overlay_on_hover_or_click": {
+            "shows": "INS-001, JNO-20260920, evidence quote excerpt"
+          },
+          "references_section_entry": "| INS-001 | Notification delivery delayed 5-10 minutes | JNO-20260920 | P1 |"
+        }
+      },
+      "notes": "Tests full citation chain: card → footnote marker → hover/click overlay → end-of-document References table, per 2026-09-10 citation-overlay spec."
+    },
+    {
+      "id": "TC-014",
+      "category": "mode_switching",
+      "input": {
+        "transcript": "User: The API rate limit is too aggressive for our batch use case, we hit it constantly.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "## Q3 Strategy\nFocus areas:\n1. Enterprise API reliability\n2. Batch processing support\n\nDe-prioritize: cosmetic UI work."
+      },
+      "expected_output": {
+        "mode": "Strategy Mode",
+        "mode_trigger": "strategy_doc present and uploaded as .md",
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "API rate limits too restrictive for batch use",
+          "priority": "P0",
+          "confidence": 90,
+          "confidence_band": "green",
+          "strategic_pillar": "Enterprise API reliability / Batch processing support",
+          "evidence_quote": "we hit it constantly",
+          "source_citation": "JNO-20260920"
+        }
+      },
+      "notes": "Tests Strategy Mode alignment scoring against a multi-point uploaded strategy doc, and mapping to a specific named pillar."
+    },
+    {
+      "id": "TC-015",
+      "category": "mode_switching",
+      "input": {
+        "transcript": "User: idk it just feels clunky somehow, hard to explain",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": null
+      },
+      "expected_output": {
+        "mode": "Quality Mode",
+        "mode_trigger": "no strategy_doc uploaded",
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "Vague usability discomfort",
+          "priority": "P3",
+          "confidence": 18,
+          "confidence_band": "red",
+          "sentiment": "negative",
+          "strategic_pillar": null,
+          "evidence_quote": "it just feels clunky somehow, hard to explain",
+          "source_citation": "JNO-20260920",
+          "anti_pattern_flags": ["vague/unfalsifiable feedback", "no actionable detail"]
+        }
+      },
+      "notes": "Tests Quality Mode anti-pattern detection scoring (2026-09-04 spec) on low-signal, unfalsifiable feedback."
+    },
+    {
+      "id": "TC-016",
+      "category": "ui_state",
+      "input": {
+        "transcript": "User: Column resizing is great but I wish I could save my preferred widths.",
+        "transcript_id": "JNO-20260920",
+        "strategy_doc": "Q3 priority: workflow customization."
+      },
+      "expected_output": {
+        "insight_card": {
+          "card_id": "INS-001",
+          "title": "No persistence for custom column widths",
+          "priority": "P2",
+          "confidence": 65,
+          "confidence_band": "light_orange",
+          "sentiment": "positive_with_request",
+          "evidence_quote": "I wish I could save my preferred widths."
+        },
+        "ui_state": {
+          "layout_note": "unrelated to this insight, but confirms draggable/resizable columns (12% min width) exist as of 2026-09-04 — background context, not scored"
+        }
+      },
+      "notes": "Tests mixed-sentiment classification (positive about a feature, negative/request about a gap) — sentiment field must capture nuance, not just binary polarity."
+    }
+  ]
+} 

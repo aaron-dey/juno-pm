@@ -1,4 +1,4 @@
-# Lovable Prototype · Juno
+# Lovable Prototype app · Juno
 
 ## Prototype link
 https://disboard.lovable.app

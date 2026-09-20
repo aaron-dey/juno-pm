@@ -13,14 +13,11 @@
 
 ## Highest-priority fix
 
-**The Control Gap** (2/5). Classification overrides at granular insight level, direct edit of output and AI regeneration/enhancement support (incl. custom instructions).
-
+**The Control Gap** (2/5). Classification overrides at granular insight level, direct edit of output and AI regeneration/enhancement support (incl. custom instructions). (This was an Aha moment)
 
 ## Verdict
 
 **Iterate** 
 Focus on the highest impact change, ensuring the synthesis is of a high quality, which in turn is used to generate and update the PRD.
-
-
 
 **Note: See improvements: [[lovable-prototype-changelog]]

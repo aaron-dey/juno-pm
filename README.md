@@ -15,7 +15,7 @@ Each module's artefact lives in its own folder; this README is the dashboard and
 
 ### M1 · Prompting
 - **System prompt** — [`01-prompting/system-prompt.md`](01-prompting/system-prompt.md)
-- **Lovable prototype** —  https://disboard.lovable.app 
+- **Lovable prototype** app —  https://disboard.lovable.app 
 	- Changelog: [[lovable-prototype-changelog]]
 
 ### M2 · Strategy
@@ -69,25 +69,60 @@ _Compliance · Safety · Reliability · Reputation._
 ## Repo structure
 
 ```
-juno-pm/
-├── README.md                          ← this dashboard + pitch
+├── README.md                                ← dashboard + pitch
+│
+│
 ├── 01-prompting/
-│   ├── system-prompt.md               ← M1: Juno's system prompt
-│   └── lovable-prototype.md           ← M1: prototype link + debrief
+│   ├── system-prompt.md                     ← M1: Juno's system prompt
+│   ├── lovable-prototype.md                 ← M1: prototype link + debrief
+│   ├── lovable-prototype-changelog.md       ← M1: prototype changelog
+│
+│
 ├── 02-strategy/
-│   ├── decision-matrix.md             ← M2: build / buy / fine-tune / partner call
-│   └── strategy-one-pager.md          ← M2: AI strategy one-pager
+│   ├── decision-matrix.md                   ← M2: build / buy / fine-tune call
+│   ├── strategy-one-pager.md                ← M2: AI strategy one-pager
+│
+│
 ├── 03-rag-prd/
-│   └── prd.md                         ← M3: AI PRD with retrieval requirements
+│   ├── prd.md                               ← M3: AI PRD with retrieval reqs
+│
+│
 ├── 04-ai-ux/
-│   ├── user-flow.md                   ← M4: AI-native user flow
-│   └── trust-gaps.md                  ← M4: trust-gap mitigations
+│   ├── user-flow.md                         ← M4: AI-native user flow
+│   └── trust-gaps.md                        ← M4: trust-gap mitigations audit
+│
+│
 ├── 05-agentic-workflows/
-│   ├── awspec.md                      ← M5: Agent Workflow Spec
-│   └── agent-control-panel.md         ← M5: Agent Control Panel
+│   ├── awspec.md                            ← M5: Agent Workflow Spec
+│   ├── agent-control-panel.md               ← M5: Agent Control Panel
+│   └── agent/
+│       ├── Juno-PM-Agent-creation-notes.md  ← M5: Juno agents (Langflow)
+│       ├── kb/                              ← M5: Juno agents kb
+│       │   ├── agent-context.md
+│       │   ├── agent-system-prompt.md
+│       │   └── strategy-one-pager.md
+│       ├── screenshots/                     ← M5: Agents flow (images/PDFs)
+│       └── setup_info/                      ← M5: Setup (guide from scratch)
+│           ├── Juno_PM_Agent_Setup_Instructions.md
+│           ├── LANGFLOW_SETUP.md
+│           ├── PROMPTS_GUIDE.md
+│           └── QUICK_START.md
+│
+│
 └── 06-evals/
-    ├── eval-stack.md                  ← M6: layered eval stack
-    └── human-rubric.md                ← M6: human evaluation rubric
+    ├── eval-stack.md                        ← M6: layered eval stack
+    ├── human-rubric.md                      ← M6: human evaluation rubric
+    ├── evals-agent/                         ← M6: Agent evals  
+    │   ├── juno-pm-agent-golden-set.md      
+    │   ├── golden-set-agent.json            ← M6: Companion dataset (cases) 
+    │   └── kb-fixtures/
+    │       ├── classification-overrides.md
+    │       ├── conflicting-addendum.md
+    │       ├── pricing.md
+    │       └── roadmap.md
+    └── evals-app/                          ← M6: App evals (functionality)
+        ├── juno-pm-app-golden-set.md       
+        └── golden-set-app.json             ← M6: Companion dataset 
 ```
 
 ---

@@ -11,30 +11,30 @@ New transcript received and Juno is reading this
 
 ## The flow
 
-**1/ Logic**
+### **1/ Logic**
 L.1 Determine if this contains a single issue/request or multiple 
 L.2 Determine if this is a (a) operational issue, (b) bug or (c) feature request 
 L.3. RAG to determine customer SLA (entitlements, escalations), strategy and product definitions/handbook 
 L.4. Summarise requests/issues 
 
-**2/ Messages**
+### **2/ Messages**
 Messages/Breadcrumbs/info to be shown at each step 
 M.1. Analysing transcripts 
 M.2. Reviewing and classifying 
 M.3. Checking context 
 M.4. Summarising 3. 
 
-**3/ Router decisions**
+### **3/ Router decisions**
 R.1. RAG check customer SLA 
 R.2. Content check product definition (and roadmap) 
 R.3. Content check product strategy (and roadmap)
 
 ## AI moments
 
-**Placement:** Full-Page Canvas column
+**Placement:** Full-Page Canvas Column (3)
 - Individual card(s) with Headline, summary
-- Classification: issue, bug, request
-- Confidence: highlight to user where particular attention needed on low confidence
+- Classification: P0, P1, P2, P3
+- Confidence: highlight to user where particular attention needed on low confidence (<60%)
 
 Should be possible for user to edit by clicking into fields or tags
 Speeds up the analysis - especially if operational critical issues identified
@@ -45,14 +45,12 @@ Speeds up the analysis - especially if operational critical issues identified
 - Reject the whole analysis as irrelevant (reject)
 - Reject individual cards as irrelevant (Regenerate)
 
-
 **Training signal**
 - If user changes description, classification, prioritisation
 - If user triggers regeneration of insight card 
 - If PRD is edited manually, and AI enhancements applied
 
 **Fail-safe**
-
 Flag missing context - customer SLA (entitlements, escalations), strategy and product definitions/handbook
 
 
