@@ -43,6 +43,7 @@ Each module's artefact lives in its own folder; this README is the dashboard and
 ## PM Execution Plan
 
 ### Where Juno is today
+- 3 major iterations of the app and 2 iterations of agent completed — UX and shared system prompt refined and embeddings added
 - Strategy, PRD, Prototype, Agent, Prompts,  Evals created (draft, synthetic)
 - App prototype published with product analytics enabled
 - Agent preview chat created (hooks to Slack pending)
@@ -60,7 +61,6 @@ Each module's artefact lives in its own folder; this README is the dashboard and
 - Sprint 2: 
 -- Open closed beta with 6 PMs (2 RocketShip, 4 customers) for Transcript processing functionality 
 -- Weekly rubric review
--- instrument abandon-rate.
 
 ### What I watch (dashboards)
 - Daily: priority re-classification rate, regeneration rate, edit rate.
@@ -73,36 +73,36 @@ Each module's artefact lives in its own folder; this README is the dashboard and
 - P99 latency: >10s on triage flow.
 
 ### Governance
-- Compliance: 
--- PII minimised at input (GDPR DSR support process/tooling needed within 30-days)
--- EU AI Act compliance risk review (documented)
--- Review and document provider compliance (Lovable, Gemini, Langflow, OpenAI) and EU data-residency
-
+- Compliance
+    - PII minimised at input (GDPR DSR support process/tooling needed within 30-days)
+    - EU AI Act compliance risk review (documented)
+    - Review and document provider compliance (Lovable, Gemini, Langflow, OpenAI) and EU data-residency
 - Safety
--- No autonomy upgrade for Agent without re-review.
--- Human in the Loop action cannot be bypassed silently 
-
+    - No autonomy upgrade for Agent without re-review.
+    - Human in the Loop action cannot be bypassed silently
 - Reliability
-- P99 latency reviewed weekly (post-mortem and action plan within 5 business days if repeated breach for 2 consecutive weeks)
--- Product analytics metrics (reclassification rate, regenerate rate, abandon rate) reviewed weekly (Amplitude)
-
+    - P99 latency reviewed weekly (post-mortem and action plan within 5 business days if repeated breach for 2 consecutive weeks)
+    - Product analytics metrics (reclassification rate, regenerate rate, abandon rate) reviewed weekly (Amplitude)
 - Reputation
--- Customer-facing communication about deprioritisation stays 100% human
--- Missed-P0 incident postmortem and action plan (within 5 business days)
+    - Customer-facing communication about deprioritisation stays 100% human
+    - Missed-P0 incident postmortem and action plan (within 5 business days)
 
 ---
 
 ## Build Insights
 
-- **Friction point.** Iterating/tuning parameters for the vector database ingest and retrieval, system and individual prompts (chunking, Top-K, history) was early friction triggering iterations that balanced accuracy, latency and cost
-- **Key learning.** Building user trust requires this to be designed into the (system) prompt and UXD right from the start, to be iterated/improved based on product analytics and qualitative reviews
-- **Aha moment.** Closing the control gap by enabling granular human steering and HIL chat prompts was a step change to improve quality of outputs and user trust that only approved actions moved forward
+- **Friction point** 
+  Iterating/tuning parameters for the vector database ingest and retrieval, as well as system prompts and chat history (chunking, Top-K, history) created friction that forced some changes and lead to iterations that better balanced accuracy, latency and cost. 
+- **Key learning**
+  Building for user trust requires system prompts and user experience design to be consistent, transparent and enable user control right from the start. This starting point earns us the opportunity to learn from real world usage and gather feedback (quantitative product metrics and qualitative interviews) that can be used to iterate on the product aligned to user needs and the business strategy.
+- **Aha moment**
+  Auditing the Trust Gap identified key improvements — especially to close the Control Gap. Enabling granular human steering (granular insight level overrides) and human-in-loop prompts (agentic co-pilot) was a step change to improve quality of outputs and enabled user trust while leveraging the power of AI synthesis and enhancement. 
 
 ---
 
 ## Async showcase
 
-3-minute walkthrough: PENDING
+3-minute walkthrough: [Loom](https://www.loom.com/share/a95b63b1809b48a5b5f29f49ef41ba77) | [Video](https://github.com/aaron-dey/juno-pm/blob/main/pitch-video_App-and-Agent%20walkthrough.mp4)
 
 ---
 

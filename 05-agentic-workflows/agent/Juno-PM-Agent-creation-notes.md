@@ -1,8 +1,13 @@
 # Juno PM in Langflow — PO Thread / Human-in-the-Loop Agent
 
-Two prototype flows built in Langflow, exploring how the Juno PM concept (already live as a Lovable web app — see the "Juno PM" project changelog) could work as an **agentic, tool-orchestrated flow** rather than a single LLM call from a web UI. Since a real Slack workspace wasn't available, both flows use Langflow's Chat Input/Output as a stand-in for what would eventually be a Slack trigger and Slack reply.
+Two prototype flows built in Langflow, exploring how the Juno PM concept (already live as a Lovable web app — see the "Juno PM" app changelog) could work as an **agentic, tool-orchestrated flow** rather than a single LLM call from a web UI. 
+ 
+- v1 — "Basic flow, file-based knowledge base" 
+- v2 — "With embedding vector DB knowledge base"
 
 Both versions solve the same problem: take a "P0 thread" (a customer escalation / incident-style conversation), have an AI Associate PM ("Juno PM") triage it against a knowledge base, produce a ranked risk table, and — if a rank-1 (highest severity) risk is found — pause and hand the decision to a human before anything goes out.
+
+Since a real Slack workspace wasn't available, both flows use Langflow's Chat Input/Output as a stand-in for what would eventually be a Slack trigger and Slack reply.
 
 ---
 
@@ -21,7 +26,7 @@ Both flows follow the same backbone:
                               false_result                   true_result
                                    │                                │
                              Chat Output                     Human Input
-                                                          (Rollback / Hold / Escalate…)
+                                                          (Rollback/Hotfix..)
                                                                      │
                                                             branch_rollback
                                                                      │
@@ -31,8 +36,11 @@ Both flows follow the same backbone:
 Key mechanics common to both:
 
 - **Agent** node runs `gpt-4o` (tool-calling enabled, calculator + current-date tools attached, `max_iterations: 15`), but its `system_prompt` input is *overridden* by the Prompt Template's rendered output rather than using the node's own default boilerplate text. This is what actually injects the Juno PM persona, the KB context, and the task instructions at runtime.
+  
 - **Prompt Template** carries the actual task spec: identify top 3 risks, cite the message index behind each, score severity 1–5, mark `NEEDS PM REVIEW` under 70% confidence, never invent customer names/ARR/contracts, and output a markdown table.
+  
 - **If-Else (Conditional Router)** does a simple substring check (`contains "| 1    |"`) against the agent's markdown table output — a cheap way to detect "rank 1 risk found" without a second model call. If found, route to Human Input; otherwise straight to Chat Output.
+  
 - **Human Input** pauses the flow (3-day timeout, no fallback configured) and offers a fixed set of decision buttons. Only the **Rollback** branch is actually wired to an output in either flow — Hold/Escalate (and, in v2, Hotfix) exist as selectable decisions on the node but aren't connected downstream yet. That's a known gap, not a bug — it's enough to prove the human-in-the-loop pause/resume mechanic without building out every downstream action.
 
 ---
@@ -60,8 +68,6 @@ Replaces the brute-force file-stuffing with a real retrieval pipeline, using Lan
 - The Agent's system prompt was also rewritten to be much closer to the "real" Rocketship PM persona already running in the Juno PM web app: explicit role framing (PM at Rocketship triaging Slack/email/Jira/CSAT feedback), a 5-step reasoning chain (parse → assess signal strength → evaluate impact → flag dependencies → recommend action), a P0–P3 classification rubric with worked examples, an evidence rule (every priority needs a strategy clause *and* a cited source), and a stricter output spec (summary line, confidence, table with a "strategic alignment" column, explicit "confirm action" step).
 - Human Input decisions were expanded from `Rollback/Hold/Escalate` to `Rollback/Hotfix/Hold/Escalate`.
 
-**One thing worth flagging as a rough edge:** the Prompt Template in v2 kept the single `{input_value}` placeholder labelled "P0 Thread" from v1, but it's now wired to the *retrieved KB chunks* (via the Parser), not the live thread — the actual live P0 thread only reaches the Agent through the separate Chat Input → Agent `input_value` edge. Functionally it still works (the agent sees both the retrieved context and the live thread, just via two different inputs instead of the cleaner `{context}` / `{input_value}` split v1 used), but it's a naming leftover from reusing the v1 template rather than a deliberate design choice — worth tidying up if this flow gets carried forward.
-
 **What this version demonstrates:** chunking strategy (size/overlap trade-offs), a vector-search-backed retrieval step instead of full-document stuffing, using the same knowledge base in two modes (ingest vs. retrieve) from one component type, and iterating a system prompt from a generic placeholder into a fully specified, evidence-driven persona that mirrors the production Juno PM prompt.
 
 ---
@@ -84,9 +90,13 @@ Replaces the brute-force file-stuffing with a real retrieval pipeline, using Lan
 ## Learnings this pair of flows demonstrates
 
 - **Agent orchestration basics in Langflow:** wiring multiple sources into a single prompt, overriding an Agent node's system prompt at runtime from an upstream component rather than hardcoding it.
+  
 - **Conditional routing on unstructured LLM output:** using a cheap substring match against a markdown table as a routing signal, instead of a second classification call.
+  
 - **Human-in-the-loop as a first-class flow primitive:** pausing execution with a timeout and a fixed decision set, and resuming on a specific branch — the core mechanic needed before this could safely sit in front of a real Slack channel.
+  
 - **RAG fundamentals:** the concrete difference between "stuff the whole file into the prompt" (v1) and "chunk → embed → retrieve top-k" (v2), including the practical parameters involved (chunk size/overlap, top-k, which column gets vectorized).
+  
 - **Prompt iteration:** moving from a generic task prompt to a fully specified persona with an explicit reasoning chain and evidence rules — and doing it in a way that stays consistent with the persona/rules already validated in the production Juno PM web app.
 
 ## Known gaps / natural next steps

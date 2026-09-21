@@ -6,6 +6,7 @@ https://disboard.lovable.app
 # Changelog 
 
 **Context** 
+
 Juno PM started from a shared template, evolving with each class, to become a functional, strategy-aware AI synthesis tool with editable, citation-traceable outputs which could be further enhanced with AI support with user edits/overrides possible to ensure insights and PRD drafting could be useful.
 
 Key build steps were: 
@@ -89,7 +90,7 @@ Each release below is grouped into four consistent categories:
 - Per-card AI refinement (sparkles button): re-checks title/description/priority/confidence against the evidence quote
 - PRD editing/enhancement: highlight text → Expand / Shorten / Custom (AI rewrites only the selection; floating Enhance button added since preview swallows right-click)
 
-Note: related audit [[trust-gaps]] 
+Note: related audit [[trust-gaps]]  ([github](https://github.com/aaron-dey/juno-pm/blob/main/04-ai-ux/trust-gaps.md ))
 
 ---
 
