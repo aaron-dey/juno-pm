@@ -1,91 +1,593 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Juno PM — AI Copilot for RocketShip’s Product Org, Pitch</title>
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Juno PM — AI Copilot for RocketShip’s Product Org, Pitch</title>
+  <style>
+    .juno-pitch {
+      --bg: #07162C;
+      --fg: #ffffff;
+      --muted: rgba(255,255,255,0.82);
+      --accent: #60a5fa;
+      --accent2: #79c0ff;
+      --line: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.035);
+      color: var(--fg);
+      background: var(--bg);
+      position: relative;
+      display: block;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Saans', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 0;
+      margin: 0;
+    }
 
+    .juno-pitch * { box-sizing: border-box; }
+    .juno-pitch a { color: var(--accent); text-decoration: none; }
+    .juno-pitch code { font-family: 'Antarctican Mono', monospace; }
+    .juno-pitch h1, .juno-pitch h2, .juno-pitch h3 {
+      font-family: 'Saans', sans-serif;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
 
+    .juno-pitch::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(96,165,250,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 90%, rgba(124,140,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-:root{--bg:#07162C;--fg:#ffffff;--muted:#ffffff;--accent:#60a5fa;--accent2:#79c0ff;--line:rgba(255,255,255,0.08);--card:rgba(255,255,255,0.035)}
-*{box-sizing:border-box}html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--fg);font-family:'Saans',-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;overflow-x:hidden;position:relative}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(96,165,250,0.10) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 90% 90%,rgba(124,140,255,0.08) 0%,transparent 60%);pointer-events:none;z-index:0}
-main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:80px 40px 0}
-h1,h2,h3{font-family:'Saans',sans-serif;letter-spacing:-0.01em;margin:0}
-a{color:var(--accent);text-decoration:none}
-code{font-family:'Antarctican Mono',monospace}
-.hero{text-align:center;margin-bottom:100px}
-.hero .badge{display:inline-block;font-family:'Saans',sans-serif;font-size:10.5px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.30);border-radius:999px;padding:6px 14px;margin-bottom:26px}
-.hero h1{font-size:clamp(42px,7vw,80px);font-weight:900;line-height:1.02;margin:0 0 22px;background:linear-gradient(135deg,#ffffff 0%,#79c0ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .lead{font-size:clamp(18px,2.2vw,26px);color:#ffffff;max-width:760px;margin:0 auto 30px;line-height:1.5}
-.hero .meta{font-family:'Saans',sans-serif;font-size:13.5px;color:var(--muted);letter-spacing:0.06em;margin:0 0 30px}
-.hero .ctas{display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.hero .cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:13px 28px;border-radius:999px;font-family:'Saans',sans-serif;font-weight:800;font-size:14px;box-shadow:0 10px 30px rgba(96,165,250,0.30);transition:transform 0.15s,box-shadow 0.15s}
-.hero .cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(96,165,250,0.40)}
-.hero .cta.secondary{background:transparent;border:1px solid var(--line);color:var(--fg);box-shadow:none}
-section.block{margin-bottom:100px}
-.eyebrow{font-family:'Saans',sans-serif;font-size:11px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px}
-.block h2{font-size:clamp(30px,4vw,46px);font-weight:800;margin:0 0 12px;color:#fff}
-.block .lede{font-size:16px;color:var(--muted);margin:0 0 36px;max-width:680px;line-height:1.55}
-.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-.m-card{background:var(--card);border:1px solid color-mix(in srgb,var(--col) 40%,transparent);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-.m-card .m-head{padding:18px 22px;background:linear-gradient(135deg,color-mix(in srgb,var(--col) 18%,transparent) 0%,transparent 70%);border-bottom:1px solid color-mix(in srgb,var(--col) 25%,transparent)}
-.m-card .m-num{font-family:'Saans',sans-serif;font-size:26px;font-weight:900;line-height:1;color:var(--col);margin-bottom:5px}
-.m-card .m-num .m-emoji{font-size:22px;margin-left:4px}
-.m-card .m-name{font-family:'Saans',sans-serif;font-size:17px;font-weight:800;color:#fff}
-.m-card .m-body{padding:14px 22px 18px}
-.m-card .m-link{display:grid;grid-template-columns:16px 128px 1fr;column-gap:10px;align-items:start;font-size:13px;color:#ffffff;margin:8px 0;text-decoration:none}.m-card .m-label{text-align:left}
-.m-card .m-link code{font-size:11.5px;background:rgba(255,255,255,0.05);padding:2px 8px;border-radius:6px;color:#ffffff;text-align:left;justify-self:start;display:inline-block}
-.m-card .m-link:hover code{background:rgba(255,255,255,0.10);color:#fff}
-.m-card .m-link.missing{opacity:0.42;font-style:italic}
-.m-card .m-arrow{color:var(--col);font-weight:800}
-.exec-rail{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.exec-rail .exec-card:nth-child(1),.exec-rail .exec-card:nth-child(2){grid-column:span 3}.exec-rail .exec-card:nth-child(3),.exec-rail .exec-card:nth-child(4){grid-column:span 3}.exec-rail .exec-card:nth-child(5){grid-column:span 6}
-.exec-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
-.exec-card .exec-step{display:inline-block;font-family:'Saans',sans-serif;font-size:10.5px;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px}
-.exec-card h3{font-size:15px;font-weight:800;color:#fff;margin:0 0 12px}
-.exec-card .exec-body{font-size:12.5px;color:#ffffff;line-height:1.6}
-.exec-card .exec-body em{color:var(--muted)}.exec-card .exec-body ul{margin:0;padding-left:8px;list-style:none}.exec-card .exec-body ul ul{margin-top:2px;padding-left:7px}.exec-card .exec-body li{position:relative;margin:0 0 6px}.exec-card .exec-body li:last-child{margin-bottom:0}.exec-card .exec-body>ul>li{padding-left:6px}.exec-card .exec-body>ul>li:before{content:'\2022';position:absolute;left:0;color:var(--accent2)}.exec-card .exec-body li li{padding-left:6px}.exec-card .exec-body li li:before{content:'\2022';position:absolute;left:0;color:var(--muted)}
-.insights-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.insight{background:var(--card);border:1px solid;border-radius:14px;padding:24px 26px}
-.insight .ic-label{font-family:'Saans',sans-serif;font-size:10.5px;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px}
-.insight h3{font-size:17px;font-weight:800;margin:0;color:#fff;line-height:1.45}
-.loom-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px;text-align:center;margin-bottom:60px}
-.loom-wrap a{display:inline-flex;align-items:center;gap:10px;background:rgba(124,140,255,0.10);border:1px solid rgba(124,140,255,0.30);color:#bcb1ff;padding:13px 26px;border-radius:999px;font-family:'Saans',sans-serif;font-weight:800;font-size:14px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:40px 20px;border-top:1px solid var(--line);margin-top:60px;letter-spacing:0.04em}
-@media(max-width:800px){.insights-row{grid-template-columns:1fr}main{padding:60px 24px 0}.exec-rail{grid-template-columns:1fr}.exec-rail .exec-card:nth-child(1),.exec-rail .exec-card:nth-child(2),.exec-rail .exec-card:nth-child(3),.exec-rail .exec-card:nth-child(4),.exec-rail .exec-card:nth-child(5){grid-column:span 1}}
-</style>
+    .juno-pitch main {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px 0;
+    }
+
+    .juno-pitch .hero {
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    .juno-pitch .badge {
+      display: inline-block;
+      font-family: 'Saans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(96,165,250,0.08);
+      border: 1px solid rgba(121,192,255,0.22);
+      border-radius: 999px;
+      padding: 9px 14px;
+      margin-bottom: 22px;
+    }
+
+    .juno-pitch .hero h1 {
+      font-size: clamp(42px, 7vw, 80px);
+      font-weight: 900;
+      line-height: 1.02;
+      margin: 0 0 22px;
+      background: linear-gradient(135deg, #ffffff 0%, #79c0ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .juno-pitch .hero .lead {
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: #ffffff;
+      max-width: 760px;
+      margin: 0 auto 30px;
+      line-height: 1.5;
+    }
+
+    .juno-pitch .meta {
+      font-family: 'Saans', sans-serif;
+      font-size: 13.5px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin: 0 0 30px;
+    }
+
+    .juno-pitch .ctas {
+      display: inline-flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .juno-pitch .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 999px;
+      font-family: 'Saans', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      box-shadow: 0 12px 28px rgba(96,165,250,0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .juno-pitch .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(96,165,250,0.40);
+    }
+
+    .juno-pitch .cta.secondary {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--fg);
+      box-shadow: none;
+    }
+
+    .juno-pitch section.block {
+      margin-bottom: 100px;
+    }
+
+    .juno-pitch .eyebrow {
+      font-family: 'Saans', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+
+    .juno-pitch .block h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 800;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+
+    .juno-pitch .block .lede {
+      font-size: 16px;
+      color: var(--muted);
+      margin: 0 0 36px;
+      max-width: 680px;
+      line-height: 1.55;
+    }
+
+    .juno-pitch .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .juno-pitch .m-card {
+      background: var(--card);
+      border: 1px solid color-mix(in srgb, var(--col) 40%, transparent);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .juno-pitch .m-card .m-head {
+      padding: 18px 22px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--col) 18%, transparent) 0%, transparent 70%);
+      border-bottom: 1px solid color-mix(in srgb, var(--col) 25%, transparent);
+    }
+
+    .juno-pitch .m-card .m-num {
+      font-family: 'Saans', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--col);
+      margin-bottom: 5px;
+    }
+
+    .juno-pitch .m-card .m-num .m-emoji {
+      font-size: 22px;
+      margin-left: 4px;
+    }
+
+    .juno-pitch .m-card .m-name {
+      font-family: 'Saans', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .juno-pitch .m-card .m-body {
+      padding: 14px 22px 18px;
+    }
+
+    .juno-pitch .m-card .m-link {
+      display: grid;
+      grid-template-columns: 16px 128px 1fr;
+      column-gap: 10px;
+      align-items: start;
+      font-size: 13px;
+      color: #ffffff;
+      margin: 8px 0;
+      text-decoration: none;
+    }
+
+    .juno-pitch .m-card .m-label { text-align: left; }
+    .juno-pitch .m-card .m-link code {
+      font-size: 11.5px;
+      background: rgba(255,255,255,0.05);
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #ffffff;
+      text-align: left;
+      justify-self: start;
+      display: inline-block;
+    }
+
+    .juno-pitch .m-card .m-link:hover code {
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+    }
+
+    .juno-pitch .m-card .m-link.missing {
+      opacity: 0.42;
+      font-style: italic;
+    }
+
+    .juno-pitch .m-card .m-arrow {
+      color: var(--col);
+      font-weight: 800;
+    }
+
+    .juno-pitch .exec-rail {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .juno-pitch .exec-rail .exec-card:nth-child(1),
+    .juno-pitch .exec-rail .exec-card:nth-child(2) { grid-column: span 3; }
+    .juno-pitch .exec-rail .exec-card:nth-child(3),
+    .juno-pitch .exec-rail .exec-card:nth-child(4),
+    .juno-pitch .exec-rail .exec-card:nth-child(5),
+    .juno-pitch .exec-rail .exec-card:nth-child(6) { grid-column: span 2; }
+
+    .juno-pitch .exec-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 22px;
+    }
+
+    .juno-pitch .exec-card .exec-step {
+      display: inline-block;
+      font-family: 'Saans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+
+    .juno-pitch .exec-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 12px;
+    }
+
+    .juno-pitch .exec-card .exec-body {
+      font-size: 12.5px;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .juno-pitch .exec-card .exec-body em { color: var(--muted); }
+    .juno-pitch .exec-card .exec-body ul {
+      margin: 0;
+      padding-left: 8px;
+      list-style: none;
+    }
+
+    .juno-pitch .exec-card .exec-body ul ul {
+      margin-top: 2px;
+      padding-left: 7px;
+    }
+
+    .juno-pitch .exec-card .exec-body li {
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 6px;
+    }
+
+    .juno-pitch .exec-card .exec-body li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    .juno-pitch .insights-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .juno-pitch .insight {
+      background: var(--card);
+      border: 1px solid;
+      border-radius: 14px;
+      padding: 24px 26px;
+    }
+
+    .juno-pitch .insight .ic-label {
+      font-family: 'Saans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .juno-pitch .insight h3 {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 0;
+      color: #fff;
+      line-height: 1.45;
+    }
+
+    .juno-pitch .loom-wrap {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .juno-pitch .loom-wrap a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(124,140,255,0.10);
+      border: 1px solid rgba(124,140,255,0.30);
+      color: #bcb1ff;
+      padding: 13px 26px;
+      border-radius: 999px;
+      font-family: 'Saans', sans-serif;
+      font-weight: 800;
+    }
+
+    .juno-pitch footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 40px 20px;
+      border-top: 1px solid var(--line);
+      margin-top: 60px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 800px) {
+      .juno-pitch .insights-row { grid-template-columns: 1fr; }
+      .juno-pitch main { padding: 60px 24px 0; }
+      .juno-pitch .exec-rail { grid-template-columns: 1fr; }
+      .juno-pitch .exec-rail .exec-card:nth-child(1),
+      .juno-pitch .exec-rail .exec-card:nth-child(2),
+      .juno-pitch .exec-rail .exec-card:nth-child(3),
+      .juno-pitch .exec-rail .exec-card:nth-child(4),
+      .juno-pitch .exec-rail .exec-card:nth-child(5),
+      .juno-pitch .exec-rail .exec-card:nth-child(6) {
+        grid-column: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-<main>
-  <section class="hero">
-    <span class="badge">AI Product Management Certification</span>
-    <h1>Juno PM — AI Copilot for RocketShip’s Product Org</h1>
-    <p class="lead">An AI Associate PM that turns Slack/Notion/Jira chaos into a prioritised top-3 risk list every morning.</p>
-    <p class="meta">Aaron Dey · #ai-product-management · Aug-Sep 2026</p>
-    <div class="ctas"><a class="cta" href="https://github.com/aaron-dey/juno-pm" target="_blank" rel="noopener">View the repo &rarr;</a><a class="cta secondary" href="https://www.loom.com/share/a95b63b1809b48a5b5f29f49ef41ba77" target="_blank" rel="noopener">&#x1F4F9; 3-min walkthrough</a></div>
+  <section class="juno-pitch">
+    <main>
+      <section class="hero">
+        <span class="badge">AI Product Management Certification</span>
+        <h1>Juno PM — AI Copilot for RocketShip’s Product Org</h1>
+        <p class="lead">An AI Associate PM that turns Slack/Notion/Jira chaos into a prioritised top-3 risk list every morning.</p>
+        <p class="meta">Aaron Dey · #ai-product-management · Aug-Sep 2026</p>
+        <div class="ctas">
+          <a class="cta" href="https://github.com/aaron-dey/juno-pm" target="_blank" rel="noopener">View the repo →</a>
+          <a class="cta secondary" href="https://www.loom.com/share/a95b63b1809b48a5b5f29f49ef41ba77" target="_blank" rel="noopener">Watch the showcase</a>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="eyebrow">Module artefacts</div>
+        <h2>The 6 building blocks</h2>
+        <p class="lede">Six modules. Six artefacts. One coherent body of work that turns Juno from a prompt into a production-ready AI copilot.</p>
+        <div class="modules-grid">
+          <div class="m-card" style="--col:#3b82f6">
+            <div class="m-head">
+              <div class="m-num">M1 <span class="m-emoji">✍️</span></div>
+              <div class="m-name">Prompting &amp; prototype</div>
+            </div>
+            <div class="m-body">
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/01-prompting/system-prompt.md"><span class="m-arrow">→</span><span class="m-label">System prompt</span><code>01-prompting</code></a>
+              <a class="m-link" href="https://disboard.lovable.app"><span class="m-arrow">→</span><span class="m-label">Prototype app</span><code>Lovable</code></a>
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/01-prompting/lovable-prototype-changelog.md"><span class="m-arrow">→</span><span class="m-label">Changelog</span><code>v1 → v3</code></a>
+            </div>
+          </div>
+
+          <div class="m-card" style="--col:#8b5cf6">
+            <div class="m-head">
+              <div class="m-num">M2 <span class="m-emoji">🧭</span></div>
+              <div class="m-name">Strategy</div>
+            </div>
+            <div class="m-body">
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/02-strategy/decision-matrix.md"><span class="m-arrow">→</span><span class="m-label">Decision matrix</span><code>Build / buy</code></a>
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/02-strategy/strategy-one-pager.md"><span class="m-arrow">→</span><span class="m-label">One-pager</span><code>AI strategy</code></a>
+            </div>
+          </div>
+
+          <div class="m-card" style="--col:#f59e0b">
+            <div class="m-head">
+              <div class="m-num">M3 <span class="m-emoji">🧠</span></div>
+              <div class="m-name">RAG / AI PRD</div>
+            </div>
+            <div class="m-body">
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/03-rag-prd/prd.md"><span class="m-arrow">→</span><span class="m-label">AI PRD</span><code>RAG reqs</code></a>
+            </div>
+          </div>
+
+          <div class="m-card" style="--col:#10b981">
+            <div class="m-head">
+              <div class="m-num">M4 <span class="m-emoji">🧩</span></div>
+              <div class="m-name">AI-native UX</div>
+            </div>
+            <div class="m-body">
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/04-ai-ux/user-flow.md"><span class="m-arrow">→</span><span class="m-label">User flow</span><code>UXD</code></a>
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/04-ai-ux/trust-gaps.md"><span class="m-arrow">→</span><span class="m-label">Trust gaps</span><code>Safety</code></a>
+            </div>
+          </div>
+
+          <div class="m-card" style="--col:#ec4899">
+            <div class="m-head">
+              <div class="m-num">M5 <span class="m-emoji">🤖</span></div>
+              <div class="m-name">Agentic workflows</div>
+            </div>
+            <div class="m-body">
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/05-agentic-workflows/awspec.md"><span class="m-arrow">→</span><span class="m-label">AWSpec</span><code>Workflow</code></a>
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/05-agentic-workflows/agent-control-panel.md"><span class="m-arrow">→</span><span class="m-label">Control panel</span><code>Human in loop</code></a>
+            </div>
+          </div>
+
+          <div class="m-card" style="--col:#14b8a6">
+            <div class="m-head">
+              <div class="m-num">M6 <span class="m-emoji">📏</span></div>
+              <div class="m-name">Evals &amp; guardrails</div>
+            </div>
+            <div class="m-body">
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/06-evals/eval-stack.md"><span class="m-arrow">→</span><span class="m-label">Eval stack</span><code>Layered</code></a>
+              <a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/06-evals/human-rubric.md"><span class="m-arrow">→</span><span class="m-label">Human rubric</span><code>Review</code></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="eyebrow">PM Execution Plan</div>
+        <h2>How I'd ship Juno</h2>
+        <p class="lede">Where the work is today, what ships next, what I watch, and what would block a launch.</p>
+        <div class="exec-rail">
+          <div class="exec-card">
+            <div class="exec-step">01 · Now</div>
+            <h3>Where Juno is today</h3>
+            <div class="exec-body">
+              <ul>
+                <li>3 major iterations of the app and 2 of the agent completed</li>
+                <li>Strategy, PRD, prototype, agent, prompts, and evals drafted</li>
+                <li>Prototype published with product analytics enabled</li>
+                <li>Agent preview chat created; Slack hooks pending</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exec-card">
+            <div class="exec-step">02 · Next</div>
+            <h3>What ships next</h3>
+            <div class="exec-body">
+              <ul>
+                <li>Review/refine eval golden set</li>
+                <li>Add PII scrubbing and degraded-mode fallback</li>
+                <li>Implement governance and production controls</li>
+                <li>Open closed beta with 6 PMs</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exec-card">
+            <div class="exec-step">03 · Watch</div>
+            <h3>What I monitor</h3>
+            <div class="exec-body">
+              <ul>
+                <li>Priority reclassification rate</li>
+                <li>Regeneration rate and edit rate</li>
+                <li>Rejection hit-rate and cost per run</li>
+                <li>Golden-set accuracy</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exec-card">
+            <div class="exec-step">04 · Red lines</div>
+            <h3>What blocks shipping</h3>
+            <div class="exec-body">
+              <ul>
+                <li>Critical-safety fail = 0</li>
+                <li>Cost per run &gt; $0.50</li>
+                <li>P99 latency &gt; 10s on triage flow</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exec-card">
+            <div class="exec-step">05 · Governance</div>
+            <h3>Guardrails</h3>
+            <div class="exec-body">
+              <ul>
+                <li>PII minimised and DSR-ready</li>
+                <li>EU AI Act risk review documented</li>
+                <li>No autonomy upgrade without review</li>
+                <li>Human in loop cannot be silently bypassed</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exec-card">
+            <div class="exec-step">06 · Reputation</div>
+            <h3>Customer trust</h3>
+            <div class="exec-body">
+              <ul>
+                <li>Customer-facing deprioritisation stays human</li>
+                <li>Missed P0 incidents have a 5-day AP plan</li>
+                <li>Analytics review is weekly</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="eyebrow">Build insights</div>
+        <h2>What I learned</h2>
+        <p class="lede">The honest three: where it hurt, what clicked, and the moment something changed.</p>
+        <div class="insights-row">
+          <div class="insight" style="border-color:rgba(248,113,113,0.40)">
+            <div class="ic-label" style="color:#f87171">🚫 Friction</div>
+            <h3>Iterating and tuning parameters for vector DB ingest, retrieval, and prompt history created the biggest drag.</h3>
+          </div>
+          <div class="insight" style="border-color:rgba(59,130,246,0.40)">
+            <div class="ic-label" style="color:#60a5fa">💡 Learning</div>
+            <h3>Trust comes from system prompts and UX that are consistent, transparent, and controllable from day one.</h3>
+          </div>
+          <div class="insight" style="border-color:rgba(16,185,129,0.40)">
+            <div class="ic-label" style="color:#34d399">✨ Aha moment</div>
+            <h3>The trust-gap audit showed that granular human steering and human-in-the-loop prompts are the unlock.</h3>
+          </div>
+        </div>
+      </section>
+
+      <div class="loom-wrap">
+        <a href="https://www.loom.com/share/a95b63b1809b48a5b5f29f49ef41ba77" target="_blank" rel="noopener">🎥 Watch the async showcase of the prototype app, product analytics, and agent flow</a>
+      </div>
+
+      <footer>Aaron Dey · #ai-product-management · Aug-Sep 2026 · Certification submission · AI Product Management</footer>
+    </main>
   </section>
-  <section class="block">
-    <div class="eyebrow">Module artefacts</div>
-    <h2>The 6 building blocks</h2>
-    <p class="lede">Six modules. Six artefacts. One coherent body of work that turns Juno from a prompt into a production-ready AI copilot.</p>
-    <div class="modules-grid"><div class="m-card" style="--col:#3b82f6"><div class="m-head"><div class="m-num">M1 <span class="m-emoji">&#x270D;&#xFE0F;</span></div><div class="m-name">Prompting &amp; Toolkit</div></div><div class="m-body"><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/01-prompting/system-prompt.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">System prompt:</span><code>01-prompting/system-prompt.md</code></a><a class="m-link" href="https://disboard.lovable.app" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Prototype:</span><code>disboard.lovable.app</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/01-prompting/lovable-prototype-changelog.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Changelog:</span><code>01-prompting/lovable-prototype-changelog.md</code></a></div></div><div class="m-card" style="--col:#fbbf24"><div class="m-head"><div class="m-num">M2 <span class="m-emoji">&#x1F4CA;</span></div><div class="m-name">Strategy</div></div><div class="m-body"><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/02-strategy/decision-matrix.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Decision matrix:</span><code>02-strategy/decision-matrix.md</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/02-strategy/strategy-one-pager.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Strategy one-pager:</span><code>02-strategy/strategy-one-pager.md</code></a></div></div><div class="m-card" style="--col:#bcb1ff"><div class="m-head"><div class="m-num">M3 <span class="m-emoji">&#x1F50D;</span></div><div class="m-name">RAG / AI PRD</div></div><div class="m-body"><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/03-rag-prd/prd.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">AI PRD:</span><code>03-rag-prd/prd.md</code></a></div></div><div class="m-card" style="--col:#34d399"><div class="m-head"><div class="m-num">M4 <span class="m-emoji">&#x1F9CA;</span></div><div class="m-name">AI-Native UX</div></div><div class="m-body"><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/04-ai-ux/user-flow.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">User flow:</span><code>04-ai-ux/user-flow.md</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/04-ai-ux/trust-gaps.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Trust-gap mitigations:</span><code>04-ai-ux/trust-gaps.md</code></a></div></div><div class="m-card" style="--col:#f472b6"><div class="m-head"><div class="m-num">M5 <span class="m-emoji">&#x1F916;</span></div><div class="m-name">Agentic Workflows</div></div><div class="m-body"><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/05-agentic-workflows/awspec.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">AWSpec:</span><code>05-agentic-workflows/awspec.md</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/05-agentic-workflows/agent-control-panel.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Agent Control Panel:</span><code>05-agentic-workflows/agent-control-panel.md</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/05-agentic-workflows/agent/Juno-PM-Agent-creation-notes.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Creation log:</span><code>05-agentic-workflows/agent/Juno-PM-Agent-creation-notes.md</code></a></div></div><div class="m-card" style="--col:#79c0ff"><div class="m-head"><div class="m-num">M6 <span class="m-emoji">&#x1F4CF;</span></div><div class="m-name">Evals &amp; Guardrails</div></div><div class="m-body"><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/06-evals/eval-stack.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Eval stack:</span><code>06-evals/eval-stack.md</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/blob/main/06-evals/human-rubric.md" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Human rubric:</span><code>06-evals/human-rubric.md</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/tree/main/06-evals/evals-app" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Evals &mdash; APP:</span><code>06-evals/evals-app</code></a><a class="m-link" href="https://github.com/aaron-dey/juno-pm/tree/main/06-evals/evals-agent" target="_blank" rel="noopener"><span class="m-arrow">&rarr;</span><span class="m-label">Evals &mdash; AGENT:</span><code>06-evals/evals-agent</code></a></div></div></div>
-  </section>
-  <section class="block">
-    <div class="eyebrow">PM Execution Plan</div>
-    <h2>How I'd ship Juno</h2>
-    <p class="lede">Where the work is today, what ships next, what I watch, and what would block a launch.</p>
-    <div class="exec-rail"><div class="exec-card"><div class="exec-step">01 &middot; Now</div><h3>Where Juno is today</h3><div class="exec-body"><ul><li>3 major iterations of the app and 2 iterations of agent completed &mdash; UX and shared system prompt refined and embeddings added</li><li>Strategy, PRD, Prototype, Agent, Prompts, Evals created (draft, synthetic)</li><li>App prototype published with product analytics enabled</li><li>Agent preview chat created (hooks to Slack pending)</li><li>Evals for prototype and agent drafted, golden sets created with focus on UXD functionality for app prototype and synthesis quality</li><li>Human rubric drafted and calibration pending</li></ul></div></div><div class="exec-card"><div class="exec-step">02 &middot; Next</div><h3>What ships next</h3><div class="exec-body"><ul><li>Sprint 1:<ul><li>Review/refine the Eval golden set with (recruited) reviewers</li><li>Add additional PII scrubbing (focus on transcript processing to include anonymised IDs)</li><li>Add fallback exists if the Lovable AI Gateway/Gemini goes down (degraded-mode banner)</li><li>Implement final blocking governance requirements</li><li>Wire up live production environments</li></ul></li><li>Sprint 2:<ul><li>Open closed beta with 6 PMs (2 RocketShip, 4 customers) for Transcript processing functionality</li><li>Weekly rubric review</li></ul></li></ul></div></div><div class="exec-card"><div class="exec-step">03 &middot; Watch</div><h3>What I watch</h3><div class="exec-body"><ul><li>Daily: priority re-classification rate, regeneration rate, edit rate.</li><li>Weekly: rejection hit-rate; cost per run.</li><li>Per release: golden-set accuracy</li></ul></div></div><div class="exec-card"><div class="exec-step">04 &middot; Red lines</div><h3>What blocks shipping</h3><div class="exec-body"><ul><li>Critical-safety fail: 0</li><li>Cost: &gt;$0.50 per run.</li><li>P99 latency: &gt;10s on triage flow.</li></ul></div></div><div class="exec-card"><div class="exec-step">05 &middot; Governance</div><h3>How I keep it safe</h3><div class="exec-body"><ul><li>Compliance<ul><li>PII minimised at input (GDPR DSR support process/tooling needed within 30-days)</li><li>EU AI Act compliance risk review (documented)</li><li>Review and document provider compliance (Lovable, Gemini, Langflow, OpenAI) and EU data-residency</li></ul></li><li>Safety<ul><li>No autonomy upgrade for Agent without re-review.</li><li>Human in the Loop action cannot be bypassed silently</li></ul></li><li>Reliability<ul><li>P99 latency reviewed weekly (post-mortem and action plan within 5 business days if repeated breach for 2 consecutive weeks)</li><li>Product analytics metrics (reclassification rate, regenerate rate, abandon rate) reviewed weekly (Amplitude)</li></ul></li><li>Reputation<ul><li>Customer-facing communication about deprioritisation stays 100% human</li><li>Missed-P0 incident postmortem and action plan (within 5 business days)</li></ul></li></ul></div></div></div>
-  </section>
-  <section class="block">
-    <div class="eyebrow">Build insights</div>
-    <h2>What I learned</h2>
-    <p class="lede">The honest three: where it hurt, what clicked, and the moment something changed.</p>
-    <div class="insights-row"><div class="insight" style="border-color:rgba(248,113,113,0.40)"><div class="ic-label" style="color:#f87171">&#x1F635; Friction</div><h3>Iterating/tuning parameters for the vector database ingest and retrieval, as well as system prompts and chat history (chunking, Top-K, history) created friction that forced some changes and lead to iterations that better balanced accuracy, latency and cost.</h3></div><div class="insight" style="border-color:rgba(96,165,250,0.40)"><div class="ic-label" style="color:#60a5fa">&#x1F9E0; Learning</div><h3>Building for user trust requires system prompts and user experience design to be consistent, transparent and enable user control right from the start. This starting point earns us the opportunity to learn from real world usage and gather feedback (quantitative product metrics and qualitative interviews) that can be used to iterate on the product aligned to user needs and the business strategy.</h3></div><div class="insight" style="border-color:rgba(251,191,36,0.40)"><div class="ic-label" style="color:#fbbf24">&#x1F4A1; Aha</div><h3>Auditing the Trust Gap identified key improvements &mdash; especially to close the Control Gap. Enabling granular human steering (granular insight level overrides) and human-in-loop prompts (agentic co-pilot) was a step change to improve quality of outputs and enabled user trust while leveraging the power of AI synthesis and enhancement.</h3></div></div>
-  </section>
-<section class="loom-wrap"><a href="https://www.loom.com/share/a95b63b1809b48a5b5f29f49ef41ba77" target="_blank" rel="noopener">&#x1F4F9; Watch the async showcase of the prototype app, product analytics and agent &rarr;</a></section>
-  <footer>Aaron Dey · #ai-product-management · Aug-Sep 2026 &middot; Certification submission &middot; AI Product Management</footer>
-</main>
 </body>
 </html>
